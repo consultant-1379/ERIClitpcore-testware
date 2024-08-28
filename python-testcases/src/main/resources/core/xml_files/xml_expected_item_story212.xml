@@ -1,0 +1,8 @@
+<litp:os-profile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:litp="http://www.ericsson.com/litp" xsi:schemaLocation="http://www.ericsson.com/litp litp-xml-schema/litp.xsd" id="test212" version="LITP2">
+  <arch>x86_64</arch>
+    <breed>test</breed>
+      <kopts_post>console=ttyS0,115200</kopts_post>
+        <name>test-profile</name>
+          <path>/var/www/html/7/os/x86_64/</path>
+            <version>rhel7</version>
+            </litp:os-profile>

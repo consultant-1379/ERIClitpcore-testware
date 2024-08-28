@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='utf-8'?>
+<litp:root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:litp="http://www.ericsson.com/litp" xsi:schemaLocation="http://www.ericsson.com/litp litp-xml-schema/litp.xsd" id="root">
+  <litp:root-deployments-collection id="deployments">
+    <litp:deployment id="d1">
+      <litp:deployment-clusters-collection id="clusters">
+        <litp:vcs-cluster id="c1">
+          <ha_manager>vcs</ha_manager>
+          <litp:cluster-configs-collection id="configs" />
+          <litp:cluster-nodes-collection id="nodes">
+            <litp:node id="node_story239">
+              <hostname>nodestory239</hostname>
+              <litp:node-configs-collection id="configs" />
+              <litp:node-file_systems-collection id="file_systems" />
+              <litp:node-items-collection id="items">
+               <litp:ntp-service-inherit source_path="/software/items/ntp1" id="ntp1">
+                  <litp:ntp-service-servers-collection-inherit source_path="/software/items/ntp1/servers" id="servers">
+                    <litp:ntp-server-inherit source_path="/software/items/ntp1/servers/server0" id="server0"/>
+                  </litp:ntp-service-servers-collection-inherit>
+                </litp:ntp-service-inherit>
+              </litp:node-items-collection>
+          <litp:node-network_interfaces-collection id="network_interfaces">
+            <litp:eth id="if0">
+              <ipaddress>10.44.86.20</ipaddress>
+              <network_name>mgmt</network_name>
+              <device_name>eth0</device_name>
+              <macaddress>AA:BB:EE:15:DD:D0</macaddress>
+            </litp:eth>
+          </litp:node-network_interfaces-collection>
+              <litp:os-profile-inherit source_path="/software/profiles/os_prof1" id="os"/>
+              <litp:node-routes-collection id="routes">
+                <litp:route-inherit source_path="/infrastructure/networking/routes/r1" id="r1"/>
+              </litp:node-routes-collection>
+              <litp:storage-profile-inherit source_path="/infrastructure/storage/storage_profiles/profile_story239" id="storage_profile"/>
+              <litp:blade-inherit source_path="/infrastructure/systems/sys2" id="system">
+                <system_name>ST21223RY9</system_name>
+              </litp:blade-inherit>
+            </litp:node>
+          </litp:cluster-nodes-collection>
+          <litp:cluster-services-collection id="services" />
+          <litp:cluster-software-collection id="software" />
+          <cluster_id>1042</cluster_id>
+          <cluster_type>sfha</cluster_type>
+          <llt_nets>hb1,hb2</llt_nets>
+          <low_prio_net>mgmt</low_prio_net>
+          <litp:vcs-cluster-fencing_disks-collection id="fencing_disks"/>
+          <litp:vcs-cluster-storage_profile-collection id="storage_profile"/>
+        </litp:vcs-cluster>
+      </litp:deployment-clusters-collection>
+    </litp:deployment>
+  </litp:root-deployments-collection>
+  <litp:infrastructure id="infrastructure">
+    <litp:infrastructure-items-collection id="items" />
+    <litp:networking id="networking">
+    </litp:networking>
+    <litp:storage id="storage">
+      <litp:storage-nfs_mounts-collection id="nfs_mounts"/>
+      <litp:storage-storage_profiles-collection id="storage_profiles">
+        <litp:storage-profile id="profile_story239">
+          <litp:storage-profile-volume_groups-collection id="volume_groups">
+            <litp:volume-group id="vg2">
+              <volume_group_name>vg2_root</volume_group_name>
+              <litp:volume-group-file_systems-collection id="file_systems">
+                <litp:file-system id="root">
+                  <mount_point>/</mount_point>
+                  <size>16G</size>
+                  <snap_size>10</snap_size>
+                  <type>ext4</type>
+                </litp:file-system>
+                <litp:file-system id="swap">
+                  <mount_point>swap</mount_point>
+                  <size>8G</size>
+                  <snap_size>100</snap_size>
+                  <type>swap</type>
+                </litp:file-system>
+              </litp:volume-group-file_systems-collection>
+              <litp:volume-group-physical_devices-collection id="physical_devices">
+                <litp:physical-device id="internal">
+                  <device_name>sda</device_name>
+                </litp:physical-device>
+              </litp:volume-group-physical_devices-collection>
+            </litp:volume-group>
+          </litp:storage-profile-volume_groups-collection>
+        </litp:storage-profile>
+      </litp:storage-storage_profiles-collection>
+      <litp:storage-storage_providers-collection id="storage_providers" />
+    </litp:storage>
+    <litp:infrastructure-system_providers-collection id="system_providers" />
+    <litp:infrastructure-systems-collection id="systems">
+      <litp:blade id="sysStory239">
+        <system_name>ST21223RY9</system_name>
+        <litp:system-disks-collection id="disks">
+          <litp:disk id="disk0">
+            <bootable>true</bootable>
+            <name>hd0</name>
+            <size>28G</size>
+            <uuid>6002122392122s39212t239o2122r392</uuid>
+          </litp:disk>
+        </litp:system-disks-collection>
+        <litp:bmc id="bmc">
+          <ipaddress>10.44.80.100</ipaddress>
+          <password_key>key-for-root</password_key>
+          <username>root</username>
+        </litp:bmc>
+      </litp:blade>
+    </litp:infrastructure-systems-collection>
+  </litp:infrastructure>
+  <litp:ms id="ms">
+  </litp:ms>
+  <litp:software id="software">
+  </litp:software>
+</litp:root>
+

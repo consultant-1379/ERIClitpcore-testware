@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<litp:cluster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:litp="http://www.ericsson.com/litp" xsi:schemaLocation="http://www.ericsson.com/litp litp-xml-schema/litp.xsd" id="clusterBug5391">
+  <ha_manager>cmw</ha_manager>
+  <litp:cluster-configs-collection id="configs"/>
+  <litp:cluster-nodes-collection id="nodes">
+  <litp:node id="node_bug5391">
+  <hostname>nodebug5391</hostname>
+  <litp:node-configs-collection id="configs" />
+  <litp:node-file_systems-collection id="file_systems" />
+  <litp:node-items-collection id="items"/>
+  <litp:node-network_interfaces-collection id="network_interfaces">
+  <litp:eth id="if0">
+  <ipaddress>10.44.86.20</ipaddress>
+  <network_name>mgmt</network_name>
+  <device_name>eth0</device_name>
+  <macaddress>AA:BB:EE:15:DD:D0</macaddress>
+  </litp:eth>
+  </litp:node-network_interfaces-collection>
+  </litp:node>
+  </litp:cluster-nodes-collection>
+  <litp:cluster-services-collection id="services"/>
+  <litp:cluster-software-collection id="software"/>
+</litp:cluster>
+

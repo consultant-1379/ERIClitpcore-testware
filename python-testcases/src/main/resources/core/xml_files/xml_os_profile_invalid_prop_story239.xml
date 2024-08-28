@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<litp:os-profile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:litp="http://www.ericsson.com/litp" xsi:schemaLocation="http://www.ericsson.com/litp litp-xml-schema/litp.xsd" id="test239" version="LITP2">
+  <arch>x86_64</arch>
+  <breed>redhat</breed>
+  <kopts_post>console=ttyS0,115200</kopts_post>
+  <name>sample-profile</name>
+  <path>/profiles/node-iso/</path>
+  <os_version>rhel6</os_version>
+</litp:os-profile>

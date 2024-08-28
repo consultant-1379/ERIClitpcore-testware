@@ -1,0 +1,11 @@
+#!/bin/sh
+command=${1}
+if [ ${command} = 'status' ] && [ -f /tmp/fail_unlock.txt ]
+then
+    exit 1
+elif [ ${command} = 'stop' ] && [ -f /tmp/fail_lock.txt ]
+then
+    exit 1
+else
+    exec /etc/init.d/httpd_backup ${command}
+fi

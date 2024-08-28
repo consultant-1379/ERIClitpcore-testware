@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE comps PUBLIC "-//Ericsson, Ltd.//DTD Comps info//EN" "comps.dtd">
+<comps>
+    <group>
+        <id>litp-rpms</id>
+        <name>LITP2</name>
+        <description>LITP provided packages</description>
+        <default>false</default>
+        <uservisible>true</uservisible>
+        <packagelist>
+            <packagereq type='mandatory'>popcorn-kernel-1.0-1.el6</packagereq>
+        </packagelist>
+    </group>
+</comps>
+                                                                                                          

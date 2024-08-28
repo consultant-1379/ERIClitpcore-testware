@@ -1,0 +1,32 @@
+Author: Laurence Canny
+Date: October 19 2020
+
+This file is written as a guide to help anyone who needs to rebuild the litpcore testware plugins and details how this was done on a RHEL7_7 system.
+
+Install rpmdevtools on your system.
+Run rpmdev-setuptree which will give you the following directory setup:
+[laurence.canny@ammeon.com@crd06s2 rpmbuild]$ tree rpmbuild/
+rpmbuild/
+├── BUILD
+├── RPMS
+├── SOURCES
+├── SPECS
+└── SRPMS
+
+BUILD - this is the folder where all of the files go which are created during a build of the package you want to create
+RPMS / SRPMS - If your build is successful this is the folder where the final rpm file will be created. The SRPMS folder only contains source rpm.
+SOURCES - This is the folder where you want to put the source tar file or/and additional files such as init.d/systemd files.
+SPECS - The SPECS folder is where your spec-file is located. A spec file is basically a set of instructions on how to build the rpm package.
+
+Two spec files have been included: genericapi.spec and genericstory.spec
+These spec files will build about 80-90% of the plugins that we use.
+
+To rebuild the plugins, I took the original rpms, copied them to the SOURCES sub-dir and iterated through the rpms by invoking the create_story_specs.sh script.
+To rebuild the plugin apis, copy the api rpms to the SOURCES sub-dir and iterate through the rpms by invoking the create_api_specs.sh script.
+
+TROUBLESHOOTING
+Some of the rpms do not follow the template as laid out in the generic spec files and may require small changes to the spec file. Where possible, I've included these but commented them out.
+Pay close attention to the how the variables are defined and provided as arguments when rpmbuild is invoked in the create_spec scripts and how those variables are mapped in the spec file.
+Finally, if you want to see how the rpm should be constructed, you can run study how the original rpm was packaged by running
+rpm2cpio <filename.rpm> | cpio -idmv
+That will create a directory called opt/ and you can view how the files should be packaged into the new rpm.

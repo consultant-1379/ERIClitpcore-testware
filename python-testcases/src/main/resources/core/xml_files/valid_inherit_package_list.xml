@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<litp:package-list-inherit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:litp="http://www.ericsson.com/litp" xsi:schemaLocation="http://www.ericsson.com/litp litp-xml-schema/litp.xsd" id="story_4347_list" source_path="/software/items/story_4347_list">
+  <litp:package-list-packages-collection-inherit source_path="/software/items/story_4347_list/packages" id="packages">
+    <litp:package-inherit source_path="/software/items/story_4347_list/packages/story_4347_2" id="story_4347_2"/>
+  </litp:package-list-packages-collection-inherit>
+</litp:package-list-inherit>

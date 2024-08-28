@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='utf-8'?>
+<litp:root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:litp="http://www.ericsson.com/litp" xsi:schemaLocation="http://www.ericsson.com/litp litp-xml-schema/litp.xsd" id="root">
+  <litp:root-deployments-collection id="deployments">
+    <litp:deployment id="d1">
+      <litp:deployment-clusters-collection id="clusters">
+        <litp:cluster id="cluster_story2507">
+          <litp:cluster-nodes-collection id="nodes">
+            <litp:node id="node1_story2507">
+              <hostname>node1</hostname>
+              <litp:node-configs-collection id="configs" />
+              <litp:node-file_systems-collection id="file_systems" />
+              <litp:node-items-collection id="items">
+              <litp:ntp-service-inherit source_path="/software/items/ntp1" id="ntp1">
+                  <litp:ntp-service-servers-collection-inherit source_path="/software/items/ntp1/servers" id="servers">
+                    <litp:ntp-server-inherit source_path="/software/items/ntp1/servers/server0" id="server0"/>
+                  </litp:ntp-service-servers-collection-inherit>
+                </litp:ntp-service-inherit> 
+               </litp:node-items-collection>
+               <litp:node-network_interfaces-collection id="network_interfaces">
+               <litp:eth id="if0">
+               <ipaddress>10.10.10.101</ipaddress>
+               <network_name>story2507</network_name>
+               <device_name>eth0</device_name>
+               <macaddress>98:BB:EE:69:DD:D0</macaddress>
+               </litp:eth>
+               </litp:node-network_interfaces-collection>
+               <litp:os-profile-inherit source_path="/software/profiles/os_prof1" id="os">
+                <name>os_story2507</name>
+              </litp:os-profile-inherit>
+              <litp:storage-profile-inherit source_path="/infrastructure/storage/storage_profiles/storage_story2507" id="storage_profile">
+              </litp:storage-profile-inherit>
+              <litp:blade-inherit source_path="/infrastructure/systems/story2507_sys1" id="system">
+                <system_name>CZ2507STORY1</system_name>
+              </litp:blade-inherit>
+            </litp:node>
+            <litp:node id="node2_story2507">
+              <hostname>node2</hostname>
+              <litp:node-configs-collection id="configs" />
+              <litp:node-file_systems-collection id="file_systems" />
+              <litp:node-items-collection id="items">
+                  <litp:ntp-service-inherit source_path="/software/items/ntp1" id="ntp1">
+                 </litp:ntp-service-inherit>
+              </litp:node-items-collection>
+              <litp:node-network_interfaces-collection id="network_interfaces">
+                  <litp:eth id="if0">
+                  <ipaddress>10.10.10.102</ipaddress>
+                  <network_name>story2507</network_name>
+                  <device_name>eth0</device_name>
+                  <macaddress>98:BB:EE:69:DD:D1</macaddress>
+                  </litp:eth>
+              </litp:node-network_interfaces-collection>
+              <litp:os-profile-inherit source_path="/software/profiles/os_prof1" id="os">
+                <name>os_story2507</name>
+              </litp:os-profile-inherit>
+              <litp:node-routes-collection id="routes">
+              <litp:route-inherit source_path="/infrastructure/networking/routes/r1" id="r1">
+              </litp:route-inherit>
+              </litp:node-routes-collection>
+              <litp:storage-profile-inherit source_path="/infrastructure/storage/storage_profiles/storage_story2507" id="storage_profile">
+              </litp:storage-profile-inherit>
+              <litp:blade-inherit source_path="/infrastructure/systems/story2507_sys2" id="system">
+                <system_name>CZ2507STORY2</system_name>
+              </litp:blade-inherit>
+            </litp:node>
+            <litp:node id="node3_story2507">
+              <hostname>node3</hostname>
+              <litp:node-configs-collection id="configs" />
+              <litp:node-file_systems-collection id="file_systems" />
+              <litp:node-items-collection id="items">
+                  <litp:ntp-service-inherit source_path="/software/items/ntp1" id="ntp1">
+                  </litp:ntp-service-inherit>
+              </litp:node-items-collection>
+              <litp:node-network_interfaces-collection id="network_interfaces">
+                  <litp:eth id="if0">
+                  <ipaddress>10.10.10.103</ipaddress>
+                  <network_name>story2507</network_name>
+                  <device_name>eth0</device_name>
+                  <macaddress>98:BB:EE:69:DD:D3</macaddress>
+                  </litp:eth>
+              </litp:node-network_interfaces-collection>
+              <litp:os-profile-inherit source_path="/software/profiles/os_prof1" id="os">
+                <name>os_story2507</name>
+              </litp:os-profile-inherit>
+              <litp:node-routes-collection id="routes">
+                  <litp:route-inherit source_path="/infrastructure/networking/routes/r1" id="r1">
+                  </litp:route-inherit>
+                  </litp:node-routes-collection>
+              <litp:storage-profile-inherit source_path="/infrastructure/storage/storage_profiles/storage_story2507" id="storage_profile">
+              </litp:storage-profile-inherit>
+              <litp:blade-inherit source_path="/infrastructure/systems/story2507_sys3" id="system">
+                <system_name>CZ2507STORY3</system_name>
+              </litp:blade-inherit>
+            </litp:node>
+          </litp:cluster-nodes-collection>
+          <litp:cluster-services-collection id="services" />
+          <litp:cluster-software-collection id="software" />
+        </litp:cluster>
+      </litp:deployment-clusters-collection>
+    </litp:deployment>
+  </litp:root-deployments-collection>
+  <litp:infrastructure id="infrastructure">
+    <litp:infrastructure-items-collection id="items" />
+    <litp:networking id="networking">
+      <litp:networking-routes-collection id="routes">
+        <litp:route id="route_story2507">
+          <gateway>10.10.10.1</gateway>
+          <subnet>0.0.0.0/0</subnet>
+        </litp:route>
+      </litp:networking-routes-collection>
+    </litp:networking>
+    <litp:storage id="storage">
+      <litp:storage-storage_profiles-collection id="storage_profiles">
+        <litp:storage-profile id="storage_story2507">
+          <litp:storage-profile-volume_groups-collection id="volume_groups">
+            <litp:volume-group id="vg1">
+              <volume_group_name>vg_root</volume_group_name>
+              <litp:volume-group-file_systems-collection id="file_systems">
+                <litp:file-system id="root">
+                  <mount_point>/</mount_point>
+                  <size>8G</size>
+                  <snap_size>100</snap_size>
+                  <type>ext4</type>
+                </litp:file-system>
+                <litp:file-system id="swap">
+                  <mount_point>swap</mount_point>
+                  <size>2G</size>
+                  <snap_size>100</snap_size>
+                  <type>swap</type>
+                </litp:file-system>
+              </litp:volume-group-file_systems-collection>
+              <litp:volume-group-physical_devices-collection id="physical_devices">
+                <litp:physical-device id="internal">
+                  <device_name>hd0</device_name>
+                </litp:physical-device>
+              </litp:volume-group-physical_devices-collection>
+            </litp:volume-group>
+          </litp:storage-profile-volume_groups-collection>
+        </litp:storage-profile>
+      </litp:storage-storage_profiles-collection>
+    </litp:storage>
+    <litp:infrastructure-system_providers-collection id="system_providers" />
+    <litp:infrastructure-systems-collection id="systems">
+      <litp:blade id="story2507_sys1">
+        <system_name>CZ2507STORY1</system_name>
+        <litp:system-disks-collection id="disks" />
+      </litp:blade>
+      <litp:blade id="story2507_sys3">
+        <system_name>CZ2507STORY3</system_name>
+        <litp:system-disks-collection id="disks">
+          <litp:disk id="disk0">
+            <bootable>true</bootable>
+            <name>hd0</name>
+            <size>28G</size>
+            <uuid>6002507250725s07t250o7250725r07y</uuid>
+          </litp:disk>
+        </litp:system-disks-collection>
+        <litp:bmc id="bmc">
+          <ipaddress>10.10.84.101</ipaddress>
+          <password_key>key-for-root</password_key>
+          <username>root</username>
+        </litp:bmc>
+      </litp:blade>
+      <litp:blade id="story2507_sys2">
+        <system_name>CZ2507STORY2</system_name>
+        <litp:system-disks-collection id="disks">
+          <litp:disk id="disk0">
+            <bootable>true</bootable>
+            <name>hd0</name>
+            <size>28G</size>
+            <uuid>6002507250725s07t250o7250725r07y</uuid>
+          </litp:disk>
+        </litp:system-disks-collection>
+        <litp:bmc id="bmc">
+          <ipaddress>10.10.84.20</ipaddress>
+          <password_key>key-for-root</password_key>
+          <username>root</username>
+        </litp:bmc>
+      </litp:blade>
+    </litp:infrastructure-systems-collection>
+  </litp:infrastructure>
+  <litp:ms id="ms">
+  </litp:ms>
+  <litp:root-plans-collection id="plans" />
+  <litp:software id="software">
+    <litp:software-deployables-collection id="deployables" />
+    <litp:software-items-collection id="items" />
+    <litp:software-profiles-collection id="profiles">
+      <litp:os-profile id="os_story2507">
+        <arch>x86_64</arch>
+        <breed>redhat</breed>
+        <kopts_post>console=ttyS0,115200</kopts_post>
+        <name>os-story2507</name>
+        <path>/var/www/html/7/os/x86_64/</path>
+        <version>rhel7</version>
+      </litp:os-profile>
+    </litp:software-profiles-collection>
+    <litp:software-runtimes-collection id="runtimes" />
+  </litp:software>
+</litp:root>

@@ -1,0 +1,1 @@
+Place in this directory the iso file to be imported and modify the name in the test.

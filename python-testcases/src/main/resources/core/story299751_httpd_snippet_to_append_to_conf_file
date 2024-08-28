@@ -1,0 +1,9 @@
+# adding the below snippet to "/etc/httpd/conf/httpd.conf" 
+# allows Apache 403 forbidden error to be returned
+
+<Location /test2>
+   SetHandler test2
+   Order deny,allow
+   Deny from all
+   Allow from .example.com
+</Location>

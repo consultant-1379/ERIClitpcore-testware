@@ -1,0 +1,2544 @@
+OBSOLETED TCs
+============
+
+#################################################################################
+STORY 6067
+#################################################################################
+
+TEST: "core.testset_story6067.test_01_p_prepare_restore_all_items_applied"
+
+DESCRIPTION:
+
+    Verify that given a LITP MS with a model in an "Applied" state
+    when user runs "litp prepare_restore" all items in the model
+    are set to "Initial" state, snapshot model item and volumes have been
+    removed, puppet certs have been cleaned up and a user can then
+    create snapshot create and run a plan successfully
+
+    Actions:
+    1. Create deployment and backup snapshots
+    2. Check that snapshots items and volumes exist
+    3. Check that all items are in "Applied" state
+    4. Run "prepare_restore" command
+    5. Check that system is in the correct state after "prepare_restore"
+      5a. Check that all model items are in correct state
+      5b. Check that no snapshot is present
+      5c. Check that puppet files have been cleaned up
+      5d. Check that LAST_SUCCESSFUL_PLAN_MODEL does not exist
+    6. Verify that a new deployment snapshot can be taken
+    7. Create, run and wait for plan to complete
+    8. Check that system is in the correct state after model has'
+       been re-deployed
+      7a. Check all items are in "Applied" after deployment plan completed
+    9. Verify LITP regular operation is resumed
+
+REPLACED BY:
+    core.testest_story10593.test_01_p_prepare_restore_with_snapshots
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+------------------------------------------------------------------------------
+
+TEST: "core.testset_story6067.test_02_p_prepare_restore_items_update_initial
+
+DESCRIPTION:
+
+    Verify that given a LITP MS with a model with items in "Applied"
+    and/or "Updated" and/or "Initial" states, when user runs
+    "litp prepare_restore" all items in the model are set to "Initial"
+    state, the "Updated" model item properties will keep their updated
+    values, snapshot model item and volumes have been removed, puppet
+    certs have been cleaned up and a user can then create snapshot
+    create and run a plan successfully
+
+    This test has been replaced by test
+        testest_story10593.test_01_p_prepare_restore_with_snapshots
+
+    Actions:
+    1. Create deployment and backup snapshots
+    2. Check that snapshots items and volumes exist
+    3. Check that all LITP items are in "Applied" state
+    4. Update an existing LITP item
+    5. Create new LITP item
+    6. Run "prepare_restore" command
+    7. Check that system is in the correct state after "prepare_restore"
+      7a. Check that all model items are in correct state
+      7b. Check that updated items still have updated values
+      7c. Check that newly created  items are present
+      7d. Check that no snapshot is present
+      7e. Check that puppet files have been cleaned up
+      7f. Check that LAST_SUCCESSFUL_PLAN_MODEL does not exist
+    8. Verify that a new deployment snapshot can be taken
+    9. Create, run and wait for plan to complete
+    10. Check that system is in the correct state after model has
+        been re-deployed
+      10a. Check all items are in "Applied" after deployment
+           plan completed
+    11. Verify LITP regular operation is resumed
+
+REPLACED BY:
+    core.testest_story10593.test_01_p_prepare_restore_with_snapshots
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+---------------------------------------------------------------------------------
+
+TEST: "core.testset_story6067.test_03_p_prepare_restore_items_for_removal
+
+DESCRIPTION:
+    Verify that given a LITP MS with a model with items in "Applied"
+    and/or "ForRemoval" and/or "Initial" states, when user runs
+    "litp prepare_restore" all items in the model are set to
+    "Initial" state, the items in "ForRemoval" state are still present
+    and returned to state, "Initial", snapshot model item and volumes have
+    been removed, puppet certs have been cleaned up and a user
+    can then create snapshot create and run a plan successfully
+
+    Actions:
+    1. Create deployment and backup snapshots
+    2. Check that snapshots items and volumes exist
+    3. Check that all LITP items are in "Applied" state
+    4. Create new LITP item
+    5. Remove newly created LITP item from model
+    6. Run "prepare_restore" command
+    7. Check that system is in the correct state after "prepare_restore"
+      7a. Check that all model items are in correct state
+      7b. Check that updated items still have updated values
+      7c. Check that newly created  items are present
+      7d. Check that no snapshot is present
+      7e. Check that puppet files have been cleaned up
+      7f. Check that LAST_SUCCESSFUL_PLAN_MODEL does not exist
+    8. Verify that a new deployment snapshot can be taken
+    9. Create, run and wait for plan to complete
+    10. Check that system is in the correct state after model has
+        been re-deployed
+      10a. Check all items are in "Applied" after deployment '
+           plan completed
+    11. Verify LITP regular operation is resumed
+
+REPLACED BY:
+    core.testest_story10593.test_01_p_prepare_restore_with_snapshots
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+---------------------------------------------------------------------------------
+
+TEST: "core.testset_story6067.test_04_p_update_prepare_restore
+
+DESCRIPTION:
+    Verify that given a LITP MS with a model with items in state
+    "Applied", when user runs "litp update -p /litp/prepare-restore"
+    all items in the model are set to "Initial" state, snapshot model
+    item and volumes have been removed, puppet certs have been cleaned up
+    and a user can then create snapshot create and run a plan successfully
+
+    Actions:
+    1. Create deployment and backup snapshots
+    2. Check that snapshots items and volumes exist
+    3. Check that all items are in "Applied" state
+    4. Run "prepare_restore" using REST syntax
+    5. Check that system is in the correct state after "prepare_restore"
+      5a. Check that all model items are in correct state
+      5b. Check that no snapshot is present
+      5c. Check that puppet files have been cleaned up
+      5d. Check that LAST_SUCCESSFUL_PLAN_MODEL does not exist
+    6. Verify that a new deployment snapshot can be taken
+    7. Create, run and wait for plan to complete
+    8. Check that system is in the correct state after model has
+       been re-deployed
+      8a. Check all items are in "Applied" after deployment plan completed
+    9. Verify LITP regular operation is resumed
+
+
+REPLACED BY:
+    core.testest_story10593.test_01_p_prepare_restore_with_snapshots
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+---------------------------------------------------------------------------------
+
+TEST: "core.testset_story6067.test_05_p_rest_prepare_restore
+
+DESCRIPTION:
+    Verify that prepare for restore can be run using the REST interface
+    directly (i.e. without using the CLI interface)
+    and that the json response is HAL compliant
+
+    Actions:
+    1. Create deployment and backup snapshots
+    2. Check that snapshots items and volumes exist
+    3. Check that all items are in "Applied" state
+    4. Run "prepare_restore" submitting REST request
+    5. Check that system is in the correct state after "prepare_restore"
+      5a. Check that all model items are in correct state
+      5b. Check that no snapshot is present
+      5c. Check that puppet files have been cleaned up
+      5d. Check that LAST_SUCCESSFUL_PLAN_MODEL does not exist
+
+    6. Verify that a new deployment snapshot can be taken
+    7. Create, run and wait for plan to complete
+    8. Check that system is in the correct state after model has
+       been re-deployed
+      8a. Check all items are in "Applied" after deployment plan completed
+    9. Verify LITP regular operation is resumed
+
+REPLACED BY:
+    core.testest_story10593.test_02_p_prepare_restore_error_handling_and_rest_syntax
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+---------------------------------------------------------------------------------
+
+TEST: "core.testset_story6067.test_06_p_update_model_after_prepare_restore
+
+DESCRIPTION:
+    Verify that given a LITP MS with a model with items in state
+    "Applied", when user runs "litp prepare_restore" all items in the
+    model are set to "Initial" state, snapshot model item and volumes have
+    been removed, puppet certs have been cleaned up
+    site_specific/read_only properties can be updated and plan run
+    successfully completes successfully
+
+    Actions:
+    1. Create deployment and backup snapshots
+    2. Check that snapshots items and volumes exist
+    3. Check that all LITP items are in "Applied" state
+    4. Create new LITP item
+    5. Run "prepare_restore" command
+    6. Check that system is in the correct state after "prepare_restore"
+      6a. Check that all model items are in correct state
+      6b. Check that updated items still have updated values
+      6c. Check that newly created  items are present
+      6d. Check that no snapshot is present
+      6f. Check that LAST_SUCCESSFUL_PLAN_MODEL does not exist
+    7. Make changes to the model after running "prepare_restore"
+      7a. Update site-specific property "hostname" of node1
+      7b. Update property "kopts_post" of os-profile
+      7c. Remove the item created before "prepare_restore"
+      7d. Create new LITP item
+    8. Verify that a new deployment snapshot can be taken
+    9. Create, run and wait for plan to complete
+    10. Check that system is in the correct state after model has
+        been re-deployed
+      10a. Check all items are in "Applied" after deployment
+           plan completed
+      10b. Check that hostname prop of node is correct
+      10c Check that items marked "ForRemoval" after "prepare_restore"
+          are still present
+      10d. Verify LITP regular operation is resumed
+
+REPLACED BY:
+    core.testest_story10593.test_01_p_prepare_restore_with_snapshots
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+---------------------------------------------------------------------------------
+
+TEST: "core.testset_story6067.test_07_p_prepare_restore_without_snapshots
+
+DESCRIPTION:
+    Verify that given a LITP MS with no snapshots present when user
+    runs the command "litp prepare_restore" all items in the model are
+    set to "Initial" state and create snapshot create and run a plan
+    successfully
+
+    Actions:
+    1. Remove any existing snapshot
+    2. Run "prepare_restore" command
+    3. Check that system is in the correct state after "prepare_restore"
+      3a. Check that all model items are in correct state
+      3b. Check that no snapshot is present
+      3c. Check that puppet files have been cleaned up
+      3d. Check that LAST_SUCCESSFUL_PLAN_MODEL does not exist
+    4. Verify that a new deployment snapshot can be taken
+    5. Create, run and wait for plan to complete
+    6. Check that system is in the correct state after model has
+       been re-deployed
+      6a. Check all items are in "Applied" after deployment plan completed
+      6b. Verify LITP regular operation is resumed
+
+REPLACED BY:
+    core.testest_story10593.test_01_p_prepare_restore_with_snapshots
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+--------------------------------------------------------------------------------
+
+TEST: "core.testset_story6067.test_08_p_prepare_restore_run_plan_fail
+
+DESCRIPTION:
+    Verify that given a LITP MS when user runs "litp prepare_restore"
+    all items in the model are set to "Initial" state, snapshot model item
+    and volume have been removed, puppet certs have been cleaned up,
+    when the created plan fails, the user can fix the model and
+    successfully create and run plan
+
+    Actions:
+    1. Create deployment and backup snapshots
+    2. Check that snapshots items and volumes exist
+    3. Check that all items are in "Applied" state
+    4. Run "prepare_restore" command
+    5. Check that system is in the correct state after "prepare_restore"
+      5a. Check that all model items are in correct state
+      5b. Check that no snapshot is present
+      5c. Check that puppet files have been cleaned up
+      5d. Check that LAST_SUCCESSFUL_PLAN_MODEL does not exist
+    6. Update existing LITP item so that plan will fail
+    7. Create, run and wait for plan to fail
+    8. Revert changes made to item
+    9. Create, run and wait for plan to complete
+    10. Check that system is in the correct state after model has
+        been re-deployed
+      10a. Check all items are in "Applied" after deployment
+           plan completed
+      10b. Verify LITP regular operation is resumed
+
+REPLACED BY:
+    core.testest_story10593.test_01_p_prepare_restore_with_snapshots
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+---------------------------------------------------------------------------------
+
+TEST: "core.testset_story6067.test_10_n_prepare_restore_while_plan_is_running
+
+DESCRIPTION:
+    Verify that given a LITP MS with a model with all items
+    in state "Applied" when user runs "litp prepare_restore"
+    while a plan is running an error is thrown
+
+    Actions:
+    1. Create deployment and backup snapshots
+    2. Check that snapshots items and volumes exist
+    3. Check that all items are in "Applied" state
+    4. Run "prepare_restore" command
+    5. Check that system is in the correct state after "prepare_restore"
+      5a. Check that all model items are in correct state
+      5b. Check that no snapshot is present
+      5c. Check that puppet files have been cleaned up
+      5d. Check that LAST_SUCCESSFUL_PLAN_MODEL does not exist
+    6. Verify that a new deployment snapshot can be taken
+    7. Create, run and wait for plan start
+    8. Attempt running "prepare_restore" while a plan is running
+    9. Wait for deployment plan to complete
+    10. Check that system is in the correct state after model has
+        been re-deployed
+      10a. Check all items are in "Applied" after deployment plan completed
+      10b. Verify LITP regular operation is resumed
+
+REPLACED BY:
+    core.testest_story10593.test_02_p_prepare_restore_error_handling_and_rest_syntax
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+---------------------------------------------------------------------------------
+
+TEST: "core.testset_story6067.test_13_n_prepare_restore_with_invalid_model
+
+DESCRIPTION:
+    Description:
+    Verify that given a LITP MS a user can issue "prepare_restore"
+    after having created and remove an invalid LITP
+
+    Actions:
+    1.  Create deployment and backup snapshots
+    2.  Check that snapshots items and volumes exist
+    3.  Check that all items are in "Applied" state
+    4.  Create invalid LITP item that will cause "create_plan" to fail
+    5.  Attempt to create the plan and verify error
+    6.  Run "prepare_restore" command
+    7.  Remove the invalid LITP item created previously
+    8.  Run "prepare_restore" command
+    9.  Check that system is in the correct state after "prepare_restore"
+      9a. Check that all model items are in correct state
+      9b. Check that no snapshot is present
+      9c. Check that puppet files have been cleaned up
+      9d. Check that LAST_SUCCESSFUL_PLAN_MODEL does not exist
+    10. Verify that a new deployment snapshot can be taken
+    11. Create, run and wait for plan to complete
+    12. Check that system is in the correct state after model has
+        been re-deployed
+      12a. Check all items are in "Applied" after deployment
+           plan completed
+      12b. Verify LITP regular operation is resumed
+
+REPLACED BY:
+    core.testest_story10593.test_01_p_prepare_restore_with_snapshots
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+
+#################################################################################
+STORY 10593
+#################################################################################
+
+
+TEST: "core.testset_story10593.test_01_p_prepare_restore_with_snapshots"
+
+DESCRIPTION:
+    Verify that given a LITP MS with a model with items in
+    Applied/Updated/ForRemoval/Initial states and with
+    Deployment/Backup snapshots and newly file systems added to the MS
+    when a user run litp prepare_restore then MS and LITP model become
+    ready for re-deployment, changes can be made to the model,
+    a snapshot can be created and plan can be created and run
+    successfully
+
+REPLACED BY:
+    This test has been replaced by test:
+    "core.testset_story11354.test_02_p_prepare_restore_with_snapshots"
+    due to change in prepare_restore functionality introduced by
+    LITPCDS-11354
+
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+----------------------------------------------------------------------------------
+TEST: core.testset_story10593.test_02_n_prepare_restore_error_handling_end_rest_syntax
+
+DESCRIPTION:
+    Verify following things:
+    - that given a LITP MS with a model with items in Applied states
+      if a user attempt to run *litp prepare_restore* while
+      a deployment plan is running then an error is thrown
+    - that given a LITP MS with a model with items in Applied state
+      and with Deployment/Backup when a user run *litp prepare_restore*
+      and the remove snapshot procedure fails on MS and error is thrown
+    - that prepare restore cannoyt be run if a item
+       "file-system" is in state "Updated"
+    - that given a LITP MS with a model with items in Applied state
+      when a user run
+        "litp update -p /litp/prepare-restore -o path='/'"
+      then MS and LITP model become ready for re-deployment
+
+REPLACED BY:
+    This test has been replaced by test:
+    "core.testset_story11354.test_03_n_prepare_restore_error_handling_end_rest_syntax
+    see LITPCDS-11354
+
+GERRIT LINK:
+
+
+#################################################################################
+STORY 2507
+#################################################################################
+
+TEST: "core.testset_story2507.test_01_p_load_replace_help"
+
+DESCRIPTION:
+
+    """
+        This test ensures litp load --help command contains
+        --replace optional argument
+
+        Actions:
+        1.Execute the following command: litp load -h
+        2.Execute the following command: litp load --help
+
+        Result:
+        litp help command shows --replace optional argument
+        """
+
+REPLACED BY:
+     LITP/ERIClitpcli-testware/python-testcases/src/main/resources/cli/
+     testset_story2507.testset_story2507.test_01_p_load_replace_help
+
+GERRIT LINK:
+
+
+#################################################################################
+STORY 212_239
+#################################################################################
+
+TEST: "core.testset_story221_239.test_11_p_export_help"
+
+DESCRIPTION:
+
+    """
+        Description:
+            This test ensures litp commands, all options are
+            documented in litp help and litp export help
+
+        Actions:
+            1.Execute the following command: litp export -h
+            2.Execute the following command: litp export --help
+
+        Result:
+            litp command help shows export command options
+    """
+
+REPLACED BY:
+     LITP/ERIClitpcli-testware/python-testcases/src/main/resources/cli/
+     testset_story212_239.test_11_p_export_help
+
+GERRIT LINK:
+
+
+#################################################################################
+STORY 212_239
+#################################################################################
+
+TEST: "core.testset_story221_239.test_13_p_import_help"
+
+DESCRIPTION:
+
+    """
+        Tests for litp import and help commands.
+            Actions:
+            1. litp --help (import/load description included)
+            2. litp import/load (usage correct, error given is correct)
+            3. litp import/load --help
+               (description clear, optional arguments are correct,
+                required arguments correct)
+            4. litp import/load --merge/-m
+
+        Results:
+            Information given is clear, concise and correct
+        """    litp command help shows export command options
+    """
+
+REPLACED BY:
+     LITP/ERIClitpcli-testware/python-testcases/src/main/resources/cli/
+     testset_story212_239.test_13_p_import_help
+
+GERRIT LINK:
+
+#################################################################################
+STORY 8999_10525
+#################################################################################
+
+
+TEST: "core.testset_story8999_10525.test_01_p_maintenance_status_when_import_iso_succeeds"
+        MERGED in story4060 test_01
+        Description:
+            This test will verify that when user runs import_iso on a LITP
+            compliant directory structure and the proccess is ongoing,
+            the 'status' and 'initiator' properties in maintenance item are
+            'Running' and 'import_iso', and when it finishes successfully
+            the 'status' and 'initiator' properties are 'Done' and
+            'import_iso' and puppet is enabled
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "core.testset_story8999_10525.test_02_p_maintenance_status_when_import_iso_fails"
+        MOVED to story4060 test_52
+        Description:
+            Verify that when user runs import_iso and it fails, the 'status'
+            property should be 'Failed' and the initiator 'import_iso' and
+            puppet is disabled
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "test_03_p_maintenance_status_when_changed_manually"
+        MOVED to story4060 test_53
+        Description:
+            Verify that when user sets manually the maintenance mode to
+            'true', the 'initiator' proterty should be 'user'. And when
+            it is set to 'false' the value should keep being 'user'. 'status'
+            property should not change.
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "test_04_p_maintenance_properties_not_updatetable"
+        MOVED to story4060 test_54
+        Description:
+            Verify that maintenance properties 'status' and 'initiator' are
+            not updatetable
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+
+#################################################################################
+STORY 6935
+#################################################################################
+
+TEST: "core.testset_story6935.test_01_p_litp_plugins_packages_imported_in_ms_successfully"
+        MERGED in story4060 test_01
+        Description:
+            This test will verify that when user runs import_iso on a LITP
+            compliant directory structure the packages from LITP_PLUGINS repo,
+            excluding packages that match ERIClitpmn*, are installed/upgraded
+            on the MS
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "core.testset_story6935.test_02_p_3pp_packets_are_imported_if_previously_installed"
+        MERGED in story4060 test_01
+        Description:
+            This test will verify that when user runs import_iso on a LITP
+            compliant directory structure the upgrades from 3PP repo are
+            updated on the MS if it was previously installed
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "core.testset_story6935.test_03_p_3pp_packets_are_installed_if_they_are_dependency"
+        MERGED in story4060 test_01
+        Description:
+            This test will verify that when user runs import_iso on a LITP
+            compliant directory structure the new packages from 3PP repo
+            will be installed only if LITP or LITP_PLUGINS packages depend
+            on them
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "core.testset_story6935.test_04_os_updates_are_installed_if_they_are_dependencies"
+        MERGED in story4060 test_01
+        Description:
+            This test will verify that when user runs import_iso on a LITP
+            compliant directory structure the new packages from OS and
+            UPDATES repo will be installed only if LITP, LITP_PLUGINS or 3PP
+            packages depend on them and the previously installed will be
+            updated
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "core.testset_story6935.test_05_p_project_packages_are_installed_upgraded"
+        MERGED in story4060 test_01
+        Description:
+            This test will verify that when user runs import_iso on a LITP
+            compliant directory structure the already installed packages
+            from <PROJECT> and <PROJECT>_<SUBPROJECT> repo are upgraded on
+            the MS
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "core.testset_story6935.test_06_p_import_iso_completes_if_litpd_restarted"
+        MOVED to story4060 test_50
+        Description:
+            This test will verify that the import_iso plan completes if
+            litpd process is restarted
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "core.testset_story6935.test_09_n_verify_yum_is_locked_during_install"
+        MERGED in story4060 test_01
+        Description:
+            This test verifies that yum gets locked while packages are
+            getting installed
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "core.testset_story6935.test_07_p_import_iso_completes_if_puppet_installs_rpms"
+        OBSOLETED puppet gets disabled before repositories are imported (story
+        LITPCDS-10525, tests are in testset_story8999_10525 test_01/02), the
+        race condition cannot occur any more if puppet stays active for
+        whatever reason it will be detected in 10525.
+
+        Description:
+            This test will verify that  the import_iso plan completes if
+            model components are set to update:latest to be updated by
+            puppet (race condition)
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "core.testset_story6935.test_08_n_import_iso_fails_if_yum_throws_exception"
+        MOVED to story4060 test_51
+        Description:
+            This test will verify that  the import_iso plan fails if yum has
+            missing dependencies.
+            NOTE: The package litptestpkg requires two packages that are not
+            available on the system
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "core.testset_story6935.test_10_n_verify_yum_lock_is_recognized_by_import_iso"
+        MOVED to story4060 test_52
+        Description:
+            This test verifies that if import_iso cannot get the yum lock no
+            packages are installed and import_iso fails
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+
+#################################################################################
+STORY 8281
+#################################################################################
+
+Moved "core.testset_story8281.py" to "misc.testset_story8281.py"
+
+#################################################################################
+STORY 9903
+#################################################################################
+
+OBSOLETED: core.testset_story9903.test_07_n_restore_snapshot_command_failure
+
+    @tms_id:
+        litpcds_9903_tc07
+    @tms_requirements_id:
+        LITPCDS-2115, LITPCDS-2478, LITPCDS-2481
+    @tms_title:
+        Snapshot model file is not affected by failed restore_snapshot plan
+    @tms_description:
+        Test the following cases:
+        1. The snapshot model file created at snapshot creation time
+           is not removed when a "restore_snapshot" plan fails
+        2. The snapshot model file is created before the create snapshot
+           plan is actually run
+        NOTE: also verifies LITPCDS-9903 and LITPCDS-10445
+    @tms_test_steps:
+    @step: Install the dummy LITP plugin
+    @result: Plugin installed
+    @step: Remove all existing snapshots
+    @result: Snapshots are successfully removed
+    @step: Issue the "create_snapshot" command to create a deployment
+           snapshot
+    @result: The create snapshot plan is running
+    @result: The snapshot model file
+             '/var/lib/litp/core/model/SNAPSHOT_PLANsnapshot' exists
+    @step: Wait for create snapshot plan completed
+    @result: Plan completed successfully
+    @result: The snapshot model file still exists
+    @step: Issue the "restore_snapshot" command
+    @result: The plan fails at phase 1
+    @result: The snapshot model file still exists
+    @tms_test_precondition: AOBSOLETED TCs
+
+===============================================================================
+The following tests of testset_story9903.py are replaced by tests in
+volmgr.testset_story2777.py and volmgr.testset_story2482_10877.py because
+they were relying on the SNAPSHOT_MODEL_<snapshot_name> file, which does not
+exist any more with LITP DB implementation.
+
+    def test_01_p_create_restore_remove_deployment_snapshot_success(self):
+        """
+        @tms_id:
+            litpcds_9903_tc01
+        @tms_requirements_id:
+            LITPCDS-2115, LITPCDS-2478, LITPCDS-2481
+        @tms_title:
+            Snapshot model file is created when snapshot is created
+        @tms_description:
+            Test the following scenario:
+            1. Deployment snapshot is successfully created
+            2. Named Backup Snapshot is successfully created
+            3. Deployment snapshot is successfully restored
+            4. Named Backup Snapshot is successfully removed
+            5. Deployment snapshot is successfull removed
+            NOTE: also verifies LITPCDS-9903, LITPCDS-6864 and LITPCDS-10445
+            NOTE2: The "restore_snapshot" procedure is not suitable for core
+            KGB. The restore snapshot plan is intentionally failed at phase 1
+            (via dummy plug-in). This still allows to sufficiently verify the
+            behaviour related to snapshot model file management
+        NOTE: also verifies bug LITPCDS-9903
+        @tms_test_steps:
+        @step: Install the dummy LITP plug-in
+        @result: Plug-in installed
+        @step: Remove all existing snapshots
+        @result: The snapshots are successfully removed
+        @step: Create a Deployment Snapshot
+        @result: The snapshot is created
+        @step: Create a Named Backup Snapshot
+        @result: The snapshot is created
+        @step: Issue the "restore_snapshot" command
+        @result: A "ValidationError" is thrown
+        @step: Remove the Named Backup Snapshot
+        @result: The snapshot is removed
+        @step: Issue the "restore_snapshot" command
+        @result: The plan fails (intentionally via dummy plug-in)
+        @step: Remove the Deployment Snapshot_name
+        @result: The snapshot is removed
+        @tms_test_precondition: A dummy LITP plug-in that causes the restore
+        snapshot plan to fail at phase 1 is available
+        @tms_execution_type: Automated
+        """
+
+    def test_02_n_snapshot_command_failures(self):
+        """
+        @tms_id:
+            litpcds_9903_tc02
+        @tms_requirements_id:
+            LITPCDS-2115, LITPCDS-2478, LITPCDS-2481
+        @tms_title:
+            Test that missing "SNAPHOT_PLAN_<snapshotname>" files are handled
+            correctly by "create_snapshot" and "remove_snapshot"
+        @tms_description:
+            Test the following scenario:
+            1. When "create_snapshot" is issued and snapshot exists already
+               then snapshot is not recreated
+            2. If a remove snapshot plan fails then snapshot still exists
+            3. If the "create_snapshot" is issued when the
+               "SNAPSHOT_PLAN_<snapshotname>" exists, the snapshot is created
+               successfully and the "SNAPSHOT_PLAN_<snapshotname>" is recreated
+        NOTE: also verifies bug LITPCDS-9903
+        @tms_test_steps:
+        @step: Create a Deployment snapshot
+        @result: Snapshot created successfully
+        @step: Issue "create_snapshot" again
+        @result: A "DoNothingPlanError" is thrown
+        @step: Issue the "remove_snapshot" command while the binary file
+               "lvremove" is missing in one peer node
+        @result: The remove snapshot plan fails
+        @step: Restore the binary file "lvremove" and issue the
+               "remove_snapshot" command
+        @result: The snapshot is removed
+        @step: Issue the "create_snapshot" command while the binary file
+               "lvcreate" is missing in one peer node
+        @result: The create snapshot plan fails
+        @step: Restore the binary file "lvcreate" and issue the
+               "create_snapshot" command
+        @result: The snapshot is successfully created
+        @tms_test_precondition: NA
+        @tms_execution_type: Automated
+        """
+
+
+
+
+
+
+#################################################################################
+STORY 6067
+#################################################################################
+
+TEST: "core.testset_story6067.test_01_p_prepare_restore_all_items_applied"
+
+DESCRIPTION:
+
+    Verify that given a LITP MS with a model in an "Applied" state
+    when user runs "litp prepare_restore" all items in the model
+    are set to "Initial" state, snapshot model item and volumes have been
+    removed, puppet certs have been cleaned up and a user can then
+    create snapshot create and run a plan successfully
+
+    Actions:
+    1. Create deployment and backup snapshots
+    2. Check that snapshots items and volumes exist
+    3. Check that all items are in "Applied" state
+    4. Run "prepare_restore" command
+    5. Check that system is in the correct state after "prepare_restore"
+      5a. Check that all model items are in correct state
+      5b. Check that no snapshot is present
+      5c. Check that puppet files have been cleaned up
+      5d. Check that LAST_SUCCESSFUL_PLAN_MODEL does not exist
+    6. Verify that a new deployment snapshot can be taken
+    7. Create, run and wait for plan to complete
+    8. Check that system is in the correct state after model has'
+       been re-deployed
+      7a. Check all items are in "Applied" after deployment plan completed
+    9. Verify LITP regular operation is resumed
+
+REPLACED BY:
+    core.testest_story10593.test_01_p_prepare_restore_with_snapshots
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+------------------------------------------------------------------------------
+
+TEST: "core.testset_story6067.test_02_p_prepare_restore_items_update_initial
+
+DESCRIPTION:
+
+    Verify that given a LITP MS with a model with items in "Applied"
+    and/or "Updated" and/or "Initial" states, when user runs
+    "litp prepare_restore" all items in the model are set to "Initial"
+    state, the "Updated" model item properties will keep their updated
+    values, snapshot model item and volumes have been removed, puppet
+    certs have been cleaned up and a user can then create snapshot
+    create and run a plan successfully
+
+    This test has been replaced by test
+        testest_story10593.test_01_p_prepare_restore_with_snapshots
+
+    Actions:
+    1. Create deployment and backup snapshots
+    2. Check that snapshots items and volumes exist
+    3. Check that all LITP items are in "Applied" state
+    4. Update an existing LITP item
+    5. Create new LITP item
+    6. Run "prepare_restore" command
+    7. Check that system is in the correct state after "prepare_restore"
+      7a. Check that all model items are in correct state
+      7b. Check that updated items still have updated values
+      7c. Check that newly created  items are present
+      7d. Check that no snapshot is present
+      7e. Check that puppet files have been cleaned up
+      7f. Check that LAST_SUCCESSFUL_PLAN_MODEL does not exist
+    8. Verify that a new deployment snapshot can be taken
+    9. Create, run and wait for plan to complete
+    10. Check that system is in the correct state after model has
+        been re-deployed
+      10a. Check all items are in "Applied" after deployment
+           plan completed
+    11. Verify LITP regular operation is resumed
+
+REPLACED BY:
+    core.testest_story10593.test_01_p_prepare_restore_with_snapshots
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+---------------------------------------------------------------------------------
+
+TEST: "core.testset_story6067.test_03_p_prepare_restore_items_for_removal
+
+DESCRIPTION:
+    Verify that given a LITP MS with a model with items in "Applied"
+    and/or "ForRemoval" and/or "Initial" states, when user runs
+    "litp prepare_restore" all items in the model are set to
+    "Initial" state, the items in "ForRemoval" state are still present
+    and returned to state, "Initial", snapshot model item and volumes have
+    been removed, puppet certs have been cleaned up and a user
+    can then create snapshot create and run a plan successfully
+
+    Actions:
+    1. Create deployment and backup snapshots
+    2. Check that snapshots items and volumes exist
+    3. Check that all LITP items are in "Applied" state
+    4. Create new LITP item
+    5. Remove newly created LITP item from model
+    6. Run "prepare_restore" command
+    7. Check that system is in the correct state after "prepare_restore"
+      7a. Check that all model items are in correct state
+      7b. Check that updated items still have updated values
+      7c. Check that newly created  items are present
+      7d. Check that no snapshot is present
+      7e. Check that puppet files have been cleaned up
+      7f. Check that LAST_SUCCESSFUL_PLAN_MODEL does not exist
+    8. Verify that a new deployment snapshot can be taken
+    9. Create, run and wait for plan to complete
+    10. Check that system is in the correct state after model has
+        been re-deployed
+      10a. Check all items are in "Applied" after deployment '
+           plan completed
+    11. Verify LITP regular operation is resumed
+
+REPLACED BY:
+    core.testest_story10593.test_01_p_prepare_restore_with_snapshots
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+---------------------------------------------------------------------------------
+
+TEST: "core.testset_story6067.test_04_p_update_prepare_restore
+
+DESCRIPTION:
+    Verify that given a LITP MS with a model with items in state
+    "Applied", when user runs "litp update -p /litp/prepare-restore"
+    all items in the model are set to "Initial" state, snapshot model
+    item and volumes have been removed, puppet certs have been cleaned up
+    and a user can then create snapshot create and run a plan successfully
+
+    Actions:
+    1. Create deployment and backup snapshots
+    2. Check that snapshots items and volumes exist
+    3. Check that all items are in "Applied" state
+    4. Run "prepare_restore" using REST syntax
+    5. Check that system is in the correct state after "prepare_restore"
+      5a. Check that all model items are in correct state
+      5b. Check that no snapshot is present
+      5c. Check that puppet files have been cleaned up
+      5d. Check that LAST_SUCCESSFUL_PLAN_MODEL does not exist
+    6. Verify that a new deployment snapshot can be taken
+    7. Create, run and wait for plan to complete
+    8. Check that system is in the correct state after model has
+       been re-deployed
+      8a. Check all items are in "Applied" after deployment plan completed
+    9. Verify LITP regular operation is resumed
+
+
+REPLACED BY:
+    core.testest_story10593.test_01_p_prepare_restore_with_snapshots
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+---------------------------------------------------------------------------------
+
+TEST: "core.testset_story6067.test_05_p_rest_prepare_restore
+
+DESCRIPTION:
+    Verify that prepare for restore can be run using the REST interface
+    directly (i.e. without using the CLI interface)
+    and that the json response is HAL compliant
+
+    Actions:
+    1. Create deployment and backup snapshots
+    2. Check that snapshots items and volumes exist
+    3. Check that all items are in "Applied" state
+    4. Run "prepare_restore" submitting REST request
+    5. Check that system is in the correct state after "prepare_restore"
+      5a. Check that all model items are in correct state
+      5b. Check that no snapshot is present
+      5c. Check that puppet files have been cleaned up
+      5d. Check that LAST_SUCCESSFUL_PLAN_MODEL does not exist
+
+    6. Verify that a new deployment snapshot can be taken
+    7. Create, run and wait for plan to complete
+    8. Check that system is in the correct state after model has
+       been re-deployed
+      8a. Check all items are in "Applied" after deployment plan completed
+    9. Verify LITP regular operation is resumed
+
+REPLACED BY:
+    core.testest_story10593.test_02_p_prepare_restore_error_handling_and_rest_syntax
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+---------------------------------------------------------------------------------
+
+TEST: "core.testset_story6067.test_06_p_update_model_after_prepare_restore
+
+DESCRIPTION:
+    Verify that given a LITP MS with a model with items in state
+    "Applied", when user runs "litp prepare_restore" all items in the
+    model are set to "Initial" state, snapshot model item and volumes have
+    been removed, puppet certs have been cleaned up
+    site_specific/read_only properties can be updated and plan run
+    successfully completes successfully
+
+    Actions:
+    1. Create deployment and backup snapshots
+    2. Check that snapshots items and volumes exist
+    3. Check that all LITP items are in "Applied" state
+    4. Create new LITP item
+    5. Run "prepare_restore" command
+    6. Check that system is in the correct state after "prepare_restore"
+      6a. Check that all model items are in correct state
+      6b. Check that updated items still have updated values
+      6c. Check that newly created  items are present
+      6d. Check that no snapshot is present
+      6f. Check that LAST_SUCCESSFUL_PLAN_MODEL does not exist
+    7. Make changes to the model after running "prepare_restore"
+      7a. Update site-specific property "hostname" of node1
+      7b. Update property "kopts_post" of os-profile
+      7c. Remove the item created before "prepare_restore"
+      7d. Create new LITP item
+    8. Verify that a new deployment snapshot can be taken
+    9. Create, run and wait for plan to complete
+    10. Check that system is in the correct state after model has
+        been re-deployed
+      10a. Check all items are in "Applied" after deployment
+           plan completed
+      10b. Check that hostname prop of node is correct
+      10c Check that items marked "ForRemoval" after "prepare_restore"
+          are still present
+      10d. Verify LITP regular operation is resumed
+
+REPLACED BY:
+    core.testest_story10593.test_01_p_prepare_restore_with_snapshots
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+---------------------------------------------------------------------------------
+
+TEST: "core.testset_story6067.test_07_p_prepare_restore_without_snapshots
+
+DESCRIPTION:
+    Verify that given a LITP MS with no snapshots present when user
+    runs the command "litp prepare_restore" all items in the model are
+    set to "Initial" state and create snapshot create and run a plan
+    successfully
+
+    Actions:
+    1. Remove any existing snapshot
+    2. Run "prepare_restore" command
+    3. Check that system is in the correct state after "prepare_restore"
+      3a. Check that all model items are in correct state
+      3b. Check that no snapshot is present
+      3c. Check that puppet files have been cleaned up
+      3d. Check that LAST_SUCCESSFUL_PLAN_MODEL does not exist
+    4. Verify that a new deployment snapshot can be taken
+    5. Create, run and wait for plan to complete
+    6. Check that system is in the correct state after model has
+       been re-deployed
+      6a. Check all items are in "Applied" after deployment plan completed
+      6b. Verify LITP regular operation is resumed
+
+REPLACED BY:
+    core.testest_story10593.test_01_p_prepare_restore_with_snapshots
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+--------------------------------------------------------------------------------
+
+TEST: "core.testset_story6067.test_08_p_prepare_restore_run_plan_fail
+
+DESCRIPTION:
+    Verify that given a LITP MS when user runs "litp prepare_restore"
+    all items in the model are set to "Initial" state, snapshot model item
+    and volume have been removed, puppet certs have been cleaned up,
+    when the created plan fails, the user can fix the model and
+    successfully create and run plan
+
+    Actions:
+    1. Create deployment and backup snapshots
+    2. Check that snapshots items and volumes exist
+    3. Check that all items are in "Applied" state
+    4. Run "prepare_restore" command
+    5. Check that system is in the correct state after "prepare_restore"
+      5a. Check that all model items are in correct state
+      5b. Check that no snapshot is present
+      5c. Check that puppet files have been cleaned up
+      5d. Check that LAST_SUCCESSFUL_PLAN_MODEL does not exist
+    6. Update existing LITP item so that plan will fail
+    7. Create, run and wait for plan to fail
+    8. Revert changes made to item
+    9. Create, run and wait for plan to complete
+    10. Check that system is in the correct state after model has
+        been re-deployed
+      10a. Check all items are in "Applied" after deployment
+           plan completed
+      10b. Verify LITP regular operation is resumed
+
+REPLACED BY:
+    core.testest_story10593.test_01_p_prepare_restore_with_snapshots
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+---------------------------------------------------------------------------------
+
+TEST: "core.testset_story6067.test_10_n_prepare_restore_while_plan_is_running
+
+DESCRIPTION:
+    Verify that given a LITP MS with a model with all items
+    in state "Applied" when user runs "litp prepare_restore"
+    while a plan is running an error is thrown
+
+    Actions:
+    1. Create deployment and backup snapshots
+    2. Check that snapshots items and volumes exist
+    3. Check that all items are in "Applied" state
+    4. Run "prepare_restore" command
+    5. Check that system is in the correct state after "prepare_restore"
+      5a. Check that all model items are in correct state
+      5b. Check that no snapshot is present
+      5c. Check that puppet files have been cleaned up
+      5d. Check that LAST_SUCCESSFUL_PLAN_MODEL does not exist
+    6. Verify that a new deployment snapshot can be taken
+    7. Create, run and wait for plan start
+    8. Attempt running "prepare_restore" while a plan is running
+    9. Wait for deployment plan to complete
+    10. Check that system is in the correct state after model has
+        been re-deployed
+      10a. Check all items are in "Applied" after deployment plan completed
+      10b. Verify LITP regular operation is resumed
+
+REPLACED BY:
+    core.testest_story10593.test_02_p_prepare_restore_error_handling_and_rest_syntax
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+---------------------------------------------------------------------------------
+
+TEST: "core.testset_story6067.test_13_n_prepare_restore_with_invalid_model
+
+DESCRIPTION:
+    Description:
+    Verify that given a LITP MS a user can issue "prepare_restore"
+    after having created and remove an invalid LITP
+
+    Actions:
+    1.  Create deployment and backup snapshots
+    2.  Check that snapshots items and volumes exist
+    3.  Check that all items are in "Applied" state
+    4.  Create invalid LITP item that will cause "create_plan" to fail
+    5.  Attempt to create the plan and verify error
+    6.  Run "prepare_restore" command
+    7.  Remove the invalid LITP item created previously
+    8.  Run "prepare_restore" command
+    9.  Check that system is in the correct state after "prepare_restore"
+      9a. Check that all model items are in correct state
+      9b. Check that no snapshot is present
+      9c. Check that puppet files have been cleaned up
+      9d. Check that LAST_SUCCESSFUL_PLAN_MODEL does not exist
+    10. Verify that a new deployment snapshot can be taken
+    11. Create, run and wait for plan to complete
+    12. Check that system is in the correct state after model has
+        been re-deployed
+      12a. Check all items are in "Applied" after deployment
+           plan completed
+      12b. Verify LITP regular operation is resumed
+
+REPLACED BY:
+    core.testest_story10593.test_01_p_prepare_restore_with_snapshots
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+
+#################################################################################
+STORY 10593
+#################################################################################
+
+
+TEST: "core.testset_story10593.test_01_p_prepare_restore_with_snapshots"
+
+DESCRIPTION:
+    Verify that given a LITP MS with a model with items in
+    Applied/Updated/ForRemoval/Initial states and with
+    Deployment/Backup snapshots and newly file systems added to the MS
+    when a user run litp prepare_restore then MS and LITP model become
+    ready for re-deployment, changes can be made to the model,
+    a snapshot can be created and plan can be created and run
+    successfully
+
+REPLACED BY:
+    This test has been replaced by test:
+    "core.testset_story11354.test_02_p_prepare_restore_with_snapshots"
+    due to change in prepare_restore functionality introduced by
+    LITPCDS-11354
+
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1246690
+
+----------------------------------------------------------------------------------
+TEST: core.testset_story10593.test_02_n_prepare_restore_error_handling_end_rest_syntax
+
+DESCRIPTION:
+    Verify following things:
+    - that given a LITP MS with a model with items in Applied states
+      if a user attempt to run *litp prepare_restore* while
+      a deployment plan is running then an error is thrown
+    - that given a LITP MS with a model with items in Applied state
+      and with Deployment/Backup when a user run *litp prepare_restore*
+      and the remove snapshot procedure fails on MS and error is thrown
+    - that prepare restore cannoyt be run if a item
+       "file-system" is in state "Updated"
+    - that given a LITP MS with a model with items in Applied state
+      when a user run
+        "litp update -p /litp/prepare-restore -o path='/'"
+      then MS and LITP model become ready for re-deployment
+
+REPLACED BY:
+    This test has been replaced by test:
+    "core.testset_story11354.test_03_n_prepare_restore_error_handling_end_rest_syntax
+    see LITPCDS-11354
+
+GERRIT LINK:
+
+
+#################################################################################
+STORY 2507
+#################################################################################
+
+TEST: "core.testset_story2507.test_01_p_load_replace_help"
+
+DESCRIPTION:
+
+    """
+        This test ensures litp load --help command contains
+        --replace optional argument
+
+        Actions:
+        1.Execute the following command: litp load -h
+        2.Execute the following command: litp load --help
+
+        Result:
+        litp help command shows --replace optional argument
+        """
+
+REPLACED BY:
+     LITP/ERIClitpcli-testware/python-testcases/src/main/resources/cli/
+     testset_story2507.testset_story2507.test_01_p_load_replace_help
+
+GERRIT LINK:
+
+
+#################################################################################
+STORY 212_239
+#################################################################################
+
+TEST: "core.testset_story221_239.test_11_p_export_help"
+
+DESCRIPTION:
+
+    """
+        Description:
+            This test ensures litp commands, all options are
+            documented in litp help and litp export help
+
+        Actions:
+            1.Execute the following command: litp export -h
+            2.Execute the following command: litp export --help
+
+        Result:
+            litp command help shows export command options
+    """
+
+REPLACED BY:
+     LITP/ERIClitpcli-testware/python-testcases/src/main/resources/cli/
+     testset_story212_239.test_11_p_export_help
+
+GERRIT LINK:
+
+
+#################################################################################
+STORY 212_239
+#################################################################################
+
+TEST: "core.testset_story221_239.test_13_p_import_help"
+
+DESCRIPTION:
+
+    """
+        Tests for litp import and help commands.
+            Actions:
+            1. litp --help (import/load description included)
+            2. litp import/load (usage correct, error given is correct)
+            3. litp import/load --help
+               (description clear, optional arguments are correct,
+                required arguments correct)
+            4. litp import/load --merge/-m
+
+        Results:
+            Information given is clear, concise and correct
+        """    litp command help shows export command options
+    """
+
+REPLACED BY:
+     LITP/ERIClitpcli-testware/python-testcases/src/main/resources/cli/
+     testset_story212_239.test_13_p_import_help
+
+GERRIT LINK:
+
+#################################################################################
+STORY 8999_10525
+#################################################################################
+
+
+TEST: "core.testset_story8999_10525.test_01_p_maintenance_status_when_import_iso_succeeds"
+        MERGED in story4060 test_01
+        Description:
+            This test will verify that when user runs import_iso on a LITP
+            compliant directory structure and the proccess is ongoing,
+            the 'status' and 'initiator' properties in maintenance item are
+            'Running' and 'import_iso', and when it finishes successfully
+            the 'status' and 'initiator' properties are 'Done' and
+            'import_iso' and puppet is enabled
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "core.testset_story8999_10525.test_02_p_maintenance_status_when_import_iso_fails"
+        MOVED to story4060 test_52
+        Description:
+            Verify that when user runs import_iso and it fails, the 'status'
+            property should be 'Failed' and the initiator 'import_iso' and
+            puppet is disabled
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "test_03_p_maintenance_status_when_changed_manually"
+        MOVED to story4060 test_53
+        Description:
+            Verify that when user sets manually the maintenance mode to
+            'true', the 'initiator' proterty should be 'user'. And when
+            it is set to 'false' the value should keep being 'user'. 'status'
+            property should not change.
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "test_04_p_maintenance_properties_not_updatetable"
+        MOVED to story4060 test_54
+        Description:
+            Verify that maintenance properties 'status' and 'initiator' are
+            not updatetable
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+
+#################################################################################
+STORY 6935
+#################################################################################
+
+TEST: "core.testset_story6935.test_01_p_litp_plugins_packages_imported_in_ms_successfully"
+        MERGED in story4060 test_01
+        Description:
+            This test will verify that when user runs import_iso on a LITP
+            compliant directory structure the packages from LITP_PLUGINS repo,
+            excluding packages that match ERIClitpmn*, are installed/upgraded
+            on the MS
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "core.testset_story6935.test_02_p_3pp_packets_are_imported_if_previously_installed"
+        MERGED in story4060 test_01
+        Description:
+            This test will verify that when user runs import_iso on a LITP
+            compliant directory structure the upgrades from 3PP repo are
+            updated on the MS if it was previously installed
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "core.testset_story6935.test_03_p_3pp_packets_are_installed_if_they_are_dependency"
+        MERGED in story4060 test_01
+        Description:
+            This test will verify that when user runs import_iso on a LITP
+            compliant directory structure the new packages from 3PP repo
+            will be installed only if LITP or LITP_PLUGINS packages depend
+            on them
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "core.testset_story6935.test_04_os_updates_are_installed_if_they_are_dependencies"
+        MERGED in story4060 test_01
+        Description:
+            This test will verify that when user runs import_iso on a LITP
+            compliant directory structure the new packages from OS and
+            UPDATES repo will be installed only if LITP, LITP_PLUGINS or 3PP
+            packages depend on them and the previously installed will be
+            updated
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "core.testset_story6935.test_05_p_project_packages_are_installed_upgraded"
+        MERGED in story4060 test_01
+        Description:
+            This test will verify that when user runs import_iso on a LITP
+            compliant directory structure the already installed packages
+            from <PROJECT> and <PROJECT>_<SUBPROJECT> repo are upgraded on
+            the MS
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "core.testset_story6935.test_06_p_import_iso_completes_if_litpd_restarted"
+        MOVED to story4060 test_50
+        Description:
+            This test will verify that the import_iso plan completes if
+            litpd process is restarted
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "core.testset_story6935.test_09_n_verify_yum_is_locked_during_install"
+        MERGED in story4060 test_01
+        Description:
+            This test verifies that yum gets locked while packages are
+            getting installed
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "core.testset_story6935.test_07_p_import_iso_completes_if_puppet_installs_rpms"
+        OBSOLETED puppet gets disabled before repositories are imported (story
+        LITPCDS-10525, tests are in testset_story8999_10525 test_01/02), the
+        race condition cannot occur any more if puppet stays active for
+        whatever reason it will be detected in 10525.
+
+        Description:
+            This test will verify that  the import_iso plan completes if
+            model components are set to update:latest to be updated by
+            puppet (race condition)
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "core.testset_story6935.test_08_n_import_iso_fails_if_yum_throws_exception"
+        MOVED to story4060 test_51
+        Description:
+            This test will verify that  the import_iso plan fails if yum has
+            missing dependencies.
+            NOTE: The package litptestpkg requires two packages that are not
+            available on the system
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+TEST: "core.testset_story6935.test_10_n_verify_yum_lock_is_recognized_by_import_iso"
+        MOVED to story4060 test_52
+        Description:
+            This test verifies that if import_iso cannot get the yum lock no
+            packages are installed and import_iso fails
+
+GERRIT LINK:
+    https://gerrit.ericsson.se/#/c/1289507/
+
+
+#################################################################################
+STORY 8281
+#################################################################################
+
+Moved "core.testset_story8281.py" to "misc.testset_story8281.py"
+
+#################################################################################
+STORY 8246
+#################################################################################
+
+RENAMED: from "core.testset_story8246.test_03_p_already_disabled"
+         to "core.testset_story8246.property_enabled_is_idempotent"
+
+RENAMED: from "core.testset_story8246.test_05_p_restart_when_enabled"
+         to "core.testset_story8246.test_05_p_maintenance_mode_perstits_litpd_service_restart"
+
+===============================================================================
+OBSOLETED: "core.testset_story8246.test_02_p_disabled_works"
+
+DESCRIPTION:
+    Test Description
+        Verify that running:
+            > litp update -p /litp/maintenance -o enabled=false
+        in maintenance mode will return the litp service to
+        normal operating mode.
+    Actions:
+        1. Turn on maintenance mode - assert success
+        2. Try to create an item - assert error
+        3. Try to remove an item - assert error
+        4. Turn off maintenance mode - assert success
+        5. Try to create an item - assert success
+        6. Try to remove an item - assert success
+    Result:
+        LITP can be put in taken out of maintenance mode by configuring the
+        maintenance item 'enabled' property to 'false'.
+    """
+This test has been included in test:
+    "core.testset_story8246.test_01_p_enabled_gives_503"
+
+===============================================================================
+
+OBSOLETED: "core.testset_story8246.test_04_p_already_enabled"
+
+DESCRIPTION:
+        Verify that running:
+            > litp update -p /litp/maintenance -o enabled=true
+        in maintenance mode will leave the litp service in maintenance
+        mode.
+    Actions:
+        1. Turn on maintenance mode - assert success
+        2. Try to create an item - assert error
+        3. Try to remove an item - assert error
+        4. Turn on maintenance mode (again) - assert success
+        5. Try to create an item - assert error
+        6. Try to remove an item - assert error
+    Result:
+        The maintenance item 'enabled' property is idempotent.
+
+This test has been included in test:
+    "core.testset_story8246.test_03_p_property_enabled_is_idempotent"
+
+===============================================================================
+
+OBSOLETED: "core.testset_story8246.test_09_p_type_and_properties_mmode_item_are_correct"
+
+DESCRIPTION:
+        This test will verify that the type and properties of maintenance
+        mode model item are correct.
+    Actions:
+        1. Verify that the maintenance item is type 'maintenance'.
+        2. Verify that the maintenance item has a property called enabled.
+    Result:
+        The type and properties of maintenance mode model item are correct.
+
+The new story 8999 adds more properties and all the properties and values
+are checked there
+
+===============================================================================
+
+OBSOLETED: "core.testset_story8246.test_06_p_restart_when_disabled"
+
+DESCRIPTION:
+        Verify that when litp service is in normal operating mode, after a
+        service restart, the service will come back in normal operating
+        mode.
+    Actions:
+        1. Try to create an item - assert success
+        2. Try to remove an item - assert success
+        3. Restart LITP service
+        4. Try to create an item - assert success
+        5. Try to remove an item - assert success
+    Result:
+        Maintenance mode persists after a litp service restart.
+
+This test has been included in test:
+    "core.testset_story8246.test_05_p_maintenance_mode_perstits_litpd_service_restart"
+
+#################################################################################
+STORY 9903
+#################################################################################
+
+OBSOLETED: core.testset_story9903.test_07_n_restore_snapshot_command_failure
+
+    @tms_id:
+        litpcds_9903_tc07
+    @tms_requirements_id:
+        LITPCDS-2115, LITPCDS-2478, LITPCDS-2481
+    @tms_title:
+        Snapshot model file is not affected by failed restore_snapshot plan
+    @tms_description:
+        Test the following cases:
+        1. The snapshot model file created at snapshot creation time
+           is not removed when a "restore_snapshot" plan fails
+        2. The snapshot model file is created before the create snapshot
+           plan is actually run
+        NOTE: also verifies LITPCDS-9903 and LITPCDS-10445
+    @tms_test_steps:
+    @step: Install the dummy LITP plugin
+    @result: Plugin installed
+    @step: Remove all existing snapshots
+    @result: Snapshots are successfully removed
+    @step: Issue the "create_snapshot" command to create a deployment
+           snapshot
+    @result: The create snapshot plan is running
+    @result: The snapshot model file
+             '/var/lib/litp/core/model/SNAPSHOT_PLANsnapshot' exists
+    @step: Wait for create snapshot plan completed
+    @result: Plan completed successfully
+    @result: The snapshot model file still exists
+    @step: Issue the "restore_snapshot" command
+    @result: The plan fails at phase 1
+    @result: The snapshot model file still exists
+    @tms_test_precondition: A dummy LITP plugin that causes the restore
+    snapshot plan to fail is available
+    @tms_execution_type: Automated
+
+This test is now included in
+    core.testset_story9903.test_02_n_snapshot_command_failures
+
+Gerrit: https://gerrit.ericsson.se/#/c/1381580/
+
+===============================================================================
+OBSOLETED: core.testset_story9903.      test_03_n_query_backed_up_deployment_snapshot_model_missing
+
+    Description:
+    -Test that the "remove_snapshot" command is successful when the
+     backed up deployment snapshot model file has already been
+     maually deleted
+    -Attempt to query the backed up deployment snapshot model
+     via the Plugin API context when the file has already
+     been maually deleted
+
+    Actions:
+    1. Execute "create_snapshot" command
+    2. Query the backed up deployment snapshot model
+       via the Plugin API context
+    3. Wait for plan to complete
+    4. Check that the file name, "SNAPSHOT_PLAN_<snapshot>"
+       is created at the location, "/var/lib/litp/core/model"
+    5. Manually delete the backed up deployment snapshot model file
+    6. Execute "remove_snapshot" command
+    7. The plugins installed on the MS may decide to raise a PluginError
+       in the event a call to PluginApiContext.snapshot_model() returns
+       None. We know that this is the behaviour implemented by
+       ERIClitpnas
+    8. Check that the file name, "SNAPSHOT_PLAN_<snapshot>"
+       is no longer at the location, "/var/lib/litp/core/model"
+
+    Result:
+    The "remove_snapshot" command is unsuccessful when the backed up
+    deployment snapshot model file has already been maually deleted owing
+    to a plugin's decision to react to this situation by raising a
+    PluginError.
+
+This test is now included in
+    core.testset_story9903.test_02_n_snapshot_command_failures
+
+Gerrit: https://gerrit.ericsson.se/#/c/1381580/
+ dummy LITP plugin that causes the restore
+    snapshot plan to fail is available
+    @tms_execution_type: Automated
+
+This test is now included in
+    core.testset_story9903.test_02_n_snapshot_command_failures
+
+===============================================================================
+
+OBSOLETED: core.testset_story9903.      test_03_n_query_backed_up_deployment_snapshot_model_missing
+
+    Description:
+    -Test that the "remove_snapshot" command is successful when the
+     backed up deployment snapshot model file has already been
+     maually deleted
+    -Attempt to query the backed up deployment snapshot model
+     via the Plugin API context when the file has already
+     been maually deleted
+
+    Actions:
+    1. Execute "create_snapshot" command
+    2. Query the backed up deployment snapshot model
+       via the Plugin API context
+    3. Wait for plan to complete
+    4. Check that the file name, "SNAPSHOT_PLAN_<snapshot>"
+       is created at the location, "/var/lib/litp/core/model"
+    5. Manually delete the backed up deployment snapshot model file
+    6. Execute "remove_snapshot" command
+    7. The plugins installed on the MS may decide to raise a PluginError
+       in the event a call to PluginApiContext.snapshot_model() returns
+       None. We know that this is the behaviour implemented by
+       ERIClitpnas
+    8. Check that the file name, "SNAPSHOT_PLAN_<snapshot>"
+       is no longer at the location, "/var/lib/litp/core/model"
+
+    Result:
+    The "remove_snapshot" command is unsuccessful when the backed up
+    deployment snapshot model file has already been maually deleted owing
+    to a plugin's decision to react to this situation by raising a
+    PluginError.
+
+This test is now included in
+    core.testset_story9903.test_02_n_snapshot_command_failures
+
+###############################################################################
+STORY 2892
+###############################################################################
+
+OBSOLETED: core.testset_story2892.test_04_n_verify_no_rabbitmq_on_nodes
+
+DESCRIPTION:
+      This test checks that rabbitmq is not installed on the nodes.
+      Actions:
+          1. Verify that rabbitmq is not installed on the nodes.
+      Results:
+         The root user check there is no rabbitmq servers on nodes.
+
+This test has been moved to:
+    misc.testset_story2892.test_04_n_verify_no_rabbitmq_on_nodes
+
+===============================================================================
+
+OBSOLETED: core.testset_story2892.test_05_p_verify_erlang_version
+
+DESCRIPTION:
+        This test checks that the erlang is installed in version 17.5
+    Actions:
+        1. Retrieve erlang version from
+            /usr/lib64/erlang/releases/17/OTP_VERSION
+    Results:
+       Erlang has version 17.5.
+
+This test has been moved to:
+ misc.testset_story_11050.test_03_p_verify_erlang_version
+
+===============================================================================
+
+TEST: test_14_p_check_valid_puppet_signed_certificate
+
+DESCRIPTION: Verify that a puppet signed certificate is accepted by rabbitmq
+
+TMS_ID: LITPCDS-2892
+
+REASON_OBSOLETED: The testcase needs to be updated to use TLSv1.2. However,
+                  our vapps are based on RHEL6 and openssl on RHEL6 doesn't
+                  support TLSv1.2
+
+GERRIT LINK:
+
+##############################################################################
+STORY 236
+##############################################################################
+OBSOLETED: core.testset_story236.test_01_p_validate_in_plan
+        Description:
+           This test checks a simple plan can be created and is reported
+           in the litp logs. The plan created is based on a simple update.
+        Actions:
+            0. Get the current log length
+            1. Get the storage profile url
+            2. Save the current name property
+            3. Update the name property
+            4. Check you can create plan without error
+            5. Calculate what logs are related to this test.
+            6. Run grep on the server logs related to this test
+            7. Assert no errors and output is generated from the grep
+            8. Restore the original parameter value (in finally)
+       Results:
+           A plan can be created
+
+OBSOLETED: core.testset_story236.test_02_n_validate_item_no_children
+        Description:
+            Creates a node with no children and attempts to create plan.
+            The create plan should report an error related to a missing
+            required item.
+        Actions:
+           0. Find required urls
+           1.Setup tree for test as follows:
+            a. Create test node
+            b. Link OS profile
+           2. Run all the setup commands and check no errors reported
+           3. Attempt to create plan and assert it fails
+           4. Check expected error in output
+       Results:
+           Create plan should fail with a missing required item error,
+           cardinality error and unresolved link error
+
+OBSOLETED: core.testset_story236.test_03_n_validate_link_diff_items
+        Description:
+            Create a link which points to 2 different items and runs
+            create_plan. Should fail with a Invalid Reference error
+        Actions:
+           0. Fetch required urls
+           1. Set up two identical system names
+           2. Get node deployment commands using system name 1
+           3. Create an additional system with the same system name
+           4. Run all setup commands and assert successful
+           5. Run create plan and assert failure
+           6. CHECK InvalidReferenceError is present
+
+       Results:
+           Create plan should fail with a Invalid Reference error
+
+OBSOLETED: core.testset_story236.test_04_n_validate_links_same_resource
+        Description:
+            Create 2 links which point to the same resource and attempt to
+            run create plan. Should fail with an exclusive link error.
+        Actions:
+           1. Set up two identical system and ip range names
+           2a. Get node1 deployment commands using system name 1
+               and ip range 1
+           2b. Get node2 deployment commands which link to the system and
+               ip range already created for node 1
+
+           3. Run all setup commands and assert successful
+           4. Create plan and assert error
+           5. Check ExclusiveLinkError is present
+       Results:
+          Create plan should fail with a ExclusiveLinkError
+
+OBSOLETED: core.testset_story236.test05_n_validate_collect_max
+        Description:
+            Create ip-range with 51 IPs (collection max is 50) and
+            run create plan
+        Actions:
+           1. Get list of create/link commands to deploy a new peer node
+           2. Retrive the ip url from the list of cmds
+           3. Append additional ips to reach max of 51
+           4. Run all setup commands and assert success
+           5. Create plan and assert failure
+           6. CHECK CardinalityError in output
+
+       Results:
+           Create plan should fail with a CardinalityError
+
+OBSOLETED: core.testset_story236.test_06_n_validate_plugin
+        Description:
+             Create new libvirt-provider and link to a new node. Expect
+             UnresolvedLinkError errors as network is not
+             used by node and bridge does not exist
+        Actions:
+           0. Fetch required URL
+           1. Create libvirt provider and network
+           2. Get node deployment commands which link to libvirt provider
+           3. Run all setup commands and assert success
+           4. Create plan and assert failure
+           5. Check ValidationError present in std_err
+       Results:
+           Create plan should fail with a ValidationError
+
+OBSOLETED: core.testset_story236.test_07_n_validate_multiply_errors
+        Description:
+         This test has been obsoleted as it is a duplicate of
+         test_02_n_validate_item_no_children
+             Create a plan with two errors (link to a resource that
+             doesn't exist (err1) and no ip set (err2)) and assert create
+             plan fails reporting both errors.
+        Actions:
+           0. Get node deployment cmds linking to non-existing system (err 1)
+              and with 0 ips (err 2)
+           1. Run commands and assert success
+           2. Create plan and assert failure
+           3. Check both CardinalityError and UnresolvedLinkError present
+       Results:
+           Create plan should fail reporting both a CardinalityError
+           and UnresolvedLinkError
+
+OBSOLETED: core.testset_story236.test_09_n_validate_circular_dependence
+        Description:
+            Attempt to create a circular dependency by linking a new object
+            to an existing object of the same name and check an error is
+            reported
+        Actions:
+           1. Create network profile with name node_profile1
+           2. Link a new network profile with the name node_profile1
+           3. Run commands and assert failure
+           4. Assert ChildNotAllowedError is reported
+       Results:
+           The link command should report a ChildNotAllowed error
+
+Removing from file, no info on why obsoleted available.
+
+###############################################################################
+Story 6864
+###############################################################################
+OBSOLETED: test_01_n_corrupt_restore_file
+This test is not longer relevant with the DB based LITP implementation
+
+Description
+    @tms_id: litpcds_6864_tc01
+    @tms_requirements_id: LITPCDS-6864
+    @tms_title: litp must not load an invalid/corrupted restore file
+    @tms_description: Given an applied LITP deployment, where there's an
+        invalid/corrupted LAST_SUCCESSFUL_PLAN_MODEL file, when the litp
+        restore_model command is executed, then an error will be reported.
+    @tms_test_steps:
+     @step: create an item in the model, create and run plan
+     @result: plan runs successfully
+     @step: move /var/lib/litp/model/LAST_SUCCESSFUL_PLAN_MODEL
+        to a different location
+     @result: no /var/lib/litp/model/LAST_SUCCESSFUL_PLAN_MODEL
+        file present
+     @step: update an item in the model
+     @result: item updated
+     @step: Execute the restore_model command
+     @result: InternalServerError error message
+     @step: create a dummy /var/lib/litp/model/LAST_SUCCESSFUL_PLAN_MODEL
+        file and run the restore_model command
+     @result: InternalServerError error message
+    @tms_test_precondition: N/A
+    @tms_execution_type: Automated
+
+
+OBSOLETED: test_03_p_restore_model_does_not_restore_to_snapshot_plan
+COVERED BY: test_set9903.test_01_p_create_restore_remove_deployment_snapshot_success
+        """
+        Covered by:
+        testset_story9903.py
+        test_01_p_create_restore_remove_deployment_snapshot_success
+        Description:
+        The "LAST_SUCCESSFUL_PLAN_MODEL" should not be recreated
+        when snapshot commands are executed
+        Actions:
+        1. Update the model and create and run plan
+        2. Check that "LAST_SUCCESSFUL_PLAN_MODEL" has been recreated
+           and save creation timestamp
+        3. Create snapshot
+        4. Check "LAST_SUCCESSFUL_PLAN_MODEL" file has not been recreated
+        5. Remove snapshot
+        6. Check "LAST_SUCCESSFUL_PLAN_MODEL" file has not been recreated
+
+        Result:
+        The "LAST_SUCCESSFUL_PLAN_MODEL" is not recreated when
+        snapshot commands are executed
+
+Story 12927
+###############################################################################
+The entire testset_story12927 is obsoleted and replaced by testset_story124377
+which covers same functionality as implemented with the DB LITP implementation
+
+OBSOLETED
+    @attr('all', 'revert', 'story12927', 'story12927_tc01', 'bur_only_test')
+    def test_01_p_run_backup_script(self):
+        # TODO: after backup script is finished do test what happens when
+        # backup script is running when plan is running
+        """
+        Description:
+            Verify that when the backup script is run for the first time that a
+            backup is created.
+        Actions:
+            1. Verify when bad number of parameters given or unexisting folder
+            no action is taken
+            2. Run backup script as litp-admin user and check error message
+            3. Create dir for backups
+            4. Verify backup was succesfully created
+            5. Verify that no backup is created if no plan has been run since
+            last backup
+            6. Run a plan and verify that a new backup is created
+            7. Verify that a new backup is created after a plan has been run
+            since last backup
+            8. Run plans and backups until there are 5 backup files
+            9. Verify that when there are 5 backups and new ones are created,
+            the oldest ones are removed
+            10. Verify backup is created after creating a named snapshot
+            11. Verify backup is created after removing a named snapshot
+            12. Verify error when running backup script site.pp is missing
+        Results:
+            Backup is succesfully created
+
+OBSOLETED
+    @attr('all', 'revert', 'story12927', 'story12927_tc02', 'bur_only_test')
+    def test_02_p_restore_backup(self):
+        """
+        Description:
+            Verify that when the MS is restored to a state before the last
+            successful plan run (e.g. package install plan) and the backup
+            was taken at a time when no plan was running, when the backed up
+            files are put back in place, then my system functions as required.
+        Actions:
+            1. Run backup script
+            2. Create Snapshot
+            3. Run backup script again
+            4. Install package nano
+            5. Run backup script
+            6. Copy the backup to the gateway
+            7. Restore litp snapshot on MS
+            8. Check package is not installed
+            9. Restore litp backup
+            10. Run a puppet cycle
+            11. Verify 'nano' is installed
+            12. Enable puppet on nodes
+
+        Results:
+            Backup is succesfully restored
+
+OBSOLETED
+    @attr('all', 'revert', 'story12927', 'story12927_tc03', 'expansion')
+    def test_03_p_restore_expansion(self):
+        """
+        Description:
+            Verify that when the MS is restored to a state before the last
+            successful plan run and the last backup was taken while an node
+            deployment plan was running, and the backed up files are put back
+            in place, then my system functions as required and when I create
+            the plan again the node successfully finishes installation.
+        Actions:
+            1. Create Snapshot
+            2. Execute the expand script for expanding cluster 1 with node2
+            3. Create and run plan
+            4. Run backup script
+            5. Copy the backup to the gateway
+            6. Stop plan
+            7. Restore litp snapshot on MS
+            8. Restore litp backup
+            9. Enable puppet on node1
+            10. Create and run plan
+            11. Verify we can remove snapshot
+            12. Verify we can create snapshot
+            13. Verify we can restore snapshot
+        Results:
+            Backup is succesfully restored
+
+
+###############################################################################
+Bug 7725
+###############################################################################
+The entire testset_bug7725 is obsoleted and converted to AT's in ERIClitpcore
+repo.
+
+OBSOLETED
+
+TEST: test_01_p_double_inherit_create_no_overwrite
+
+DESCRIPTION: Double inheritance via CLI with no properties
+             overwritten on reference creation. Double inheritance of Applied
+             item must follow the same rules as single inheritance.
+
+
+REASON OBSOLETED: Test was converted to an AT. The AT resides in
+                  'ERIClitpcore repo: ats.litpcds-7725.test_01_p_double_inherit_create_no_overwrite.at'.
+
+GERRIT LINK: https://gerrit.ericsson.se/#/c/3822931/
+
+---------------------------------------------------------------------------
+
+OBSOLETED
+
+TEST: test_02_p_double_inherit_create_overwrite
+
+DESCRIPTION: On double inheritance via CLI overwriting properties
+             possible on reference creation. Double inheritance of Applied
+             item must follow the same rules as single inheritance.
+
+
+REASON OBSOLETED: Test was converted to an AT. The AT resides in
+                  'ERIClitpcore repo: ats.litpcds-7725.test_02_p_double_inherit_create_overwrite.at'.
+
+GERRIT LINK: https://gerrit.ericsson.se/#/c/3822931/
+
+---------------------------------------------------------------------------
+
+OBSOLETED
+
+TEST: test_03_n_double_inherit_remove_src_initial
+
+DESCRIPTION: A test on double inheritance, using the CLI, where
+             both source and referenced items are in Initial state. Check
+             behaviour on removing an overwritten property and on removing
+             source item completely.
+
+
+REASON OBSOLETED: Test was converted to an AT. The AT resides in
+                  'ERIClitpcore repo: ats.litpcds-7725.test_03_n_double_inherit_remove_src_initial.at'.
+
+GERRIT LINK: https://gerrit.ericsson.se/#/c/3822931/
+
+---------------------------------------------------------------------------
+
+OBSOLETED
+
+TEST: test_04_p_double_inherit_xml
+
+DESCRIPTION: A test on double inheritance, export deployment
+             with double inheritance in initial state to xml, load same file
+             with merge and replace.
+
+REASON OBSOLETED: Test was converted to an AT. The AT resides in
+                  'ERIClitpcore repo: ats.litpcds-7725.test_04_p_double_inherit_xml.at'.
+
+GERRIT LINK: https://gerrit.ericsson.se/#/c/3822931/
+
+
+###############################################################################
+Bug 7864
+###############################################################################
+The entire testset_bug7864 is obsoleted and converted to AT's in ERIClitpcore
+repo.
+
+TEST: test_01_p_model_item_backup_after_fail_load
+
+DESCRIPTION: A test on XML load on a path that already exists, to ensure the
+             path is not removed from the model; checks LITPCDS-7864 does not
+             reappear.
+
+REASON OBSOLETED: Test was converted to an AT. The At resides in
+                  'ERIClitpcore repo ats.litpcds-7864.test_01_p_model_item_backup_after_fail_load.at'.
+
+GERRIT LINK: https://gerrit.ericsson.se/#/c/3822931/
+
+###############################################################################
+STORY 124437
+###############################################################################
+The entire testset_story_124437.py script is obsoleted.
+
+TESTS: test_01_p_
+       testset_story124437.py : test_01a_p_
+       testset_story124437.py : test_01b_p_
+       testset_story124437.py : test_01c_p_
+       testset_story124437.py : test_10_p_setup_4clusters_1node_environment
+       testset_story124437.py : test_11_p_mutiple_failures_handling
+
+DESCRIPTION: The tests have no provided descriptions but the story these tests
+             are related to is:
+             "As a LITP Architect I want LITP Core Execution Manger to execute
+             Run Plan, Callbacks and Config phases as Celery Jobs in parallel
+             based off phases from a phase order tree."
+
+REASON OBSOLETED: Tests were in 'pre-reg' and were meant to be used to test the
+                  following scripts
+                  testset_story124437_dependencies.py
+                  testset_story124437_kill_services.py
+                  testset_story124437_stop_plan.py
+                  which now have all of the tests marked as 'manual' so this
+                  script isn't necessary.
+
+GERRIT LINK: https://gerrit.ericsson.se/#/c/4343602/
+
+###############################################################################
+STORY 262
+###############################################################################
+TESTS:  testset_story262.py  test_04_p_validate_payload_info
+
+DESCRIPTION: As a REST Client developer I want to get an item type specified
+             by URL so that the server can tell me what the format of items
+             for the type is
+
+REASON OBSOLETED: Test check LITP REST items types for parent child relationships
+                  and properties using keyword matches against LITP documents.
+                  Mismatches can occur and cause test failures for two reasons:
+
+                  1) The LITP documents may be subject to formatting changes
+                     over time and can cause these matches to fail.
+
+                  2) LITP item type 'Views' are listed under 'Properties' in LITP
+                     item type documentation. These are suffixed with '(view)' in their
+                     description. This leads to false positives as view data is not
+                     returned under the 'Properties' or 'View' key from the JSON returned
+                     from the LITP REST API. If an item type only has a view it will it
+                     will be returned as having properties when checking the document
+                     and not so when querying the REST API.
+
+GERRIT LINK: https://gerrit.ericsson.se/#/c/4702665/
+             https://gerrit.ericsson.se/#/c/4768885/
+###############################################################################
+
+
+###############################################################################
+STORY 107196
+###############################################################################
+
+TESTS: testset_story107196 test_09_n_kill_puppedb_while_plan_is_running_mn
+
+
+DESCRIPTION: Verify that if puppetdb will be disabled while a plan
+             is running then the plan runs untill puppetdb comes back up and
+             plan runs till completion.
+
+
+TMS-ID: litpcds_107196_tc09
+
+
+REASON OBSOLETED: Merged logic with
+                  story107196.test_08_n_kill_puppedb_while_plan_is_running_ms
+
+
+GERRIT LINK: https://gerrit.ericsson.se/#/c/4823136/
+
+
+###############################################################################
+STORY 1647
+###############################################################################
+
+TESTS: testset_story1647 test_01_n_test_user_cant_change_model_while_plan_running
+                         test_02_n_there_are_no_changes_in_model_but_plan_running
+                         test_03_n_while_plan_running_not_possible_to_remove_plan
+                         test_04_n_while_plan_runs_export_and_import_not_allowed
+
+
+
+DESCRIPTION: As a site engineer,
+             I want to be prevented from making a plan and any
+             changes to the model while a plan is running,
+             so that my model remains consistent.
+
+
+TMS-ID: litpcds_1647_tc01
+        litpcds_1647_tc02
+        litpcds_1647_tc03
+        litpcds_1647_tc04
+
+
+REASON OBSOLETED: Replaced by Acceptance Tests:
+                  ERIClitpcore/ats/testset_story1647/test_01_02_03_04.at
+                  Gerrit: https://gerrit.ericsson.se/#/c/701844/
+
+GERRIT LINK: https://gerrit.ericsson.se/#/c/5597650/
+
+###############################################################################
+STORY 1959
+###############################################################################
+
+TESTS: testset_story1959 test_01_n_passenger_apache_config_enforced
+  test_02_n_passenger_config_dir_enforced
+  test_03_p_passenger_running
+
+TMS-ID: litpcds_1959_tc01
+  litpcds_1959_tc02
+  litpcds_1959_tc03
+
+DESCRIPTION:  As in Installer I want to install and configure puppet using Passenger on
+              Apache so that it is more scalable than the default WEBrick mechanism.
+
+REASON OBSOLETED: These testcases make references to puppetmaster.conf file and
+                  passenger related tests which will no longer be valid with the
+                  introduction of puppetserver
+
+GERRIT LINK: https://gerrit.ericsson.se/#/c/5294422/
+
+##############################################################################
+BUG 13125
+###############################################################################
+
+TEST: testset_bug13125 test_04_n_litpd_not_running_subsys_startup_lock_root
+
+
+DESCRIPTION: Test that litpd service can be started normally
+            when the subsys lock file and the startup lock file are
+            unexpectedly present
+            (/var/run/litp_startup_lock, /var/run/litp_startup_lock)
+
+
+TMS-ID: litpcds_13125_tc_04
+
+
+REASON_OBSOLETED: test_04_n_litpd_not_running_subsys_startup_lock_root is
+                  covered by test_02_n_litpd_not_running_startup_lock_root
+
+
+GERRIT_LINK: https://gerrit.ericsson.se/#/c/8999212/
+
+-------------------------------------------------------------------------------
+
+TEST: testset_bug13125 test_08_n_litpd_not_running_pid_startup_lock_root
+
+
+DESCRIPTION: Test that litpd service can be started normally
+            when shutdown was graceful but an unexpected dummy file
+            /var/run/litp_service.py.pid exists and an unexpected
+            /var/run/litp_startup_lock
+
+
+TMS-ID: litpcds_13125_tc_08
+
+
+REASON_OBSOLETED: test_08_n_litpd_not_running_pid_startup_lock_root is
+                  covered by test_06_n_litpd_not_running_pid_subsys_startup_
+                  lock_root
+
+
+GERRIT_LINK: https://gerrit.ericsson.se/#/c/8999212/
+
+
+---------------------------------------------------------------------------
+
+
+TEST: test_11_n_litpd_running_subsys_root
+
+
+DESCRIPTION: Test that if litpd service is running but mandatory
+            file /var/run/litp_service.py.pid is missing
+            attempt to start litp doesn't cause unexpected behaviour
+
+
+TMS_ID: litpcds_13125_tc_11
+
+
+REASON_OBSOLETED: test_11_n_litpd_running_subsys_root is covered
+                  by test_09_n_litpd_running_root
+
+
+GERRIT_LINK: https://gerrit.ericsson.se/#/c/8999212/
+
+
+---------------------------------------------------------------------------
+
+
+TEST: test_15_n_litpd_running_pid_root
+
+
+DESCRIPTION:  Test that issuing 'service litpd start' command
+            causes no unexpected behaviour when another instance of LITP
+            is running and a mandatory subsys lock file is missing
+
+
+TMS_ID: litpcds_13125_tc_15
+
+
+REASON_OBSOLETED: test_15_n_litpd_running_pid_root is covered by
+                  test_13_n_another_instance_litpd_running_root
+
+
+GERRIT_LINK: https://gerrit.ericsson.se/#/c/8999212/
+
+
+---------------------------------------------------------------------------
+
+
+TEST: test_20_n_litpd_not_running_subsys_startup_lock_non_root
+
+
+DESCRIPTION: Test that issuing 'service litpd start' command
+            by a non root user doesn't start litp while it's stopped and
+            unexpected files /var/run/litp_startup_lock and
+            /var/lock/subsys/litpd are present
+
+TMS_ID: litpcds_13125_tc_20
+
+
+REASON_OBSOLETED: test_20_n_litpd_not_running_subsys_startup_
+                  lock_non_root is covered test_18_n_litpd_not_running_
+                  startup_lock_non_root
+
+
+GERRIT_LINK: https://gerrit.ericsson.se/#/c/8999212/
+
+
+----------------------------------------------------------------------------
+
+
+TEST: test_24_n_litpd_not_running_pid_startup_lock_non_root
+
+
+DESCRIPTION: Test that issuing 'service litpd start' command
+            by a non root user doesn't start litp while it's stopped by
+            root and unexpected files /var/run/litp_startup_lock,
+            /var/run/litp_service.py.pid present
+
+
+TMS_ID: litpcds_13125_tc_24
+
+
+REASON_OBSOLETED: test_24_n_litpd_not_running_pid_startup_lock_non_root
+                  is covered by test_22_n_litpd_not_running_pid_subsys_
+                  startup_lock_non_root
+
+
+GERRIT_LINK:  https://gerrit.ericsson.se/#/c/8999212/
+
+
+---------------------------------------------------------------------------
+
+
+TEST: test_29_n_litpd_running_pid_subsystem_non_root
+
+
+DESCRIPTION: Test that issuing 'service litpd start' command
+            by a non root user doesn't cause any unexpected behaviour when
+            litp is already running
+
+
+TMS_ID: litpcds_13125_tc_29
+
+
+REASON_OBSOLETED: test_29_n_litpd_running_pid_subsystem_non_root
+                  is covered by test_31_n_litpd_running_pid_non_root
+
+
+GERRIT_LINK: https://gerrit.ericsson.se/#/c/8999212/
+
+
+--------------------------------------------------------------------------
+
+
+TEST: test_30_p_litpd_running_pid_subsys_startup_lock_non_root
+
+
+DESCRIPTION: Test that issuing 'service litpd start' command
+            by a non root user doesn't cause any unexpected behaviour when
+            litp is already running and unexpected /var/run/litp_startup_lock
+            file is present
+
+
+TMS_ID: litpcds_13125_tc_30
+
+
+REASON_OBSOLETED: test_30_p_litpd_running_pid_subsys_startup_lock_non_root
+                  is covered by test_32_p_litpd_running_pid_startup_lock_
+                  non_root
+
+
+GERRIT_LINK: https://gerrit.ericsson.se/#/c/8999212/
+
+###############################################################################
+STORY 187127
+###############################################################################
+
+TEST: test_01_p_resume_multiple_failures
+
+
+
+DESCRIPTION: When I issue the command to resume the plan after:
+             a failed node VCS lock task, then the plan resumes
+             a failed node VCS unlock task, then the plan resumes
+             a failed Callback task, then the plan resumes
+             a failed Config task, then the plan resumes
+             multiple failed Config tasks, then the plan resumes
+             after failures, then it will still fail
+             Resume the plan which is in state initial
+             Resume the plan which is in state successful
+             Resume plan execution when no plan exists
+
+
+TMS_ID: torf_187127_tc01
+
+REASON_OBSOLETED: test_01_p_resume_multiple_failures
+                  is predicated no init.d as the startup script for the httpd service
+                  This has been deprecated in RHEL7. systemd has replaced is.
+
+
+
+GERRIT_LINK: https://gerrit.ericsson.se/#/c/9818555/
+
+
+#####################################################################################
+STORY 242
+####################################################################################
+
+TEST: test_02_p_authenticate_litprc
+
+
+DESCRIPTION: Given a valid POSIX user on the MS, verify that
+            the user can run a LITP CLI command using
+            information from the ~/.litprc
+
+TMS_ID: litpcds_242_tc02
+
+REASON_OBSOLETED: This testcase uses litprc file which no
+                  longer exists in RHEL7.
+
+
+GERRIT_LINK: https://gerrit.ericsson.se/#/c/10648998/
+
+
+###################################################################################
+
+
+TEST: test_07_n_invalid_litprc_details
+
+
+DESCRIPTION: Given a valid POSIX user on the MS, verify that
+            the user cannot run a LITP CLI command when
+            invalid login information is contained in it's
+            ~/.litprc
+
+
+TMS_ID: litpcds_242_tc07
+
+
+REASON_OBSOLETED: This testcases uses litprc file which no
+                  longer exists in RHEL7.
+
+GERRIT_LINK: https://gerrit.ericsson.se/#/c/10648998/
+
+
+##################################################################################
+
+
+TEST: test_08_n_malformed_litprc
+
+
+DESCRIPTION: Having incorrect information contained in a .litprc
+            is validated to not allow authentication when not
+            passing login information via CLI
+
+TMS_ID: litpcds_242_tc08
+
+
+REASON_OBSOLETED: This testcase uses litprc file which no
+                  longer exists in RHEL7.
+
+
+GERRIT_LINK: https://gerrit.ericsson.se/#/c/10648998/
+
+
+###################################################################################
+
+
+TEST: test_06_p_unlock_task_after_manual_unlock
+
+
+DESCRIPTION: Given a failed plan that leaves a node locked,
+             if the unlock is executed manually on the node,
+             then the subsequent plan will have an
+             unlock task at the top but it should not fail
+             to update the model even though node is already
+             unlocked.
+
+TMS_ID: litpcds_5890_tc06
+
+
+REASON_OBSOLETED: The lock/unlock tests are covered in
+                  ERIClitpcore/ats/plan/node_lock/node_lock_config_task.at
+                  In RHEL7, the create node api request includes a reference
+                  to profile which is absent in RHEL6. This is contributing
+                  to further tests failing when run in the core kgb.
+                  See
+                  https://jira-oss.seli.wh.rnd.internal.ericsson.com/browse/
+                  TORF-572132 for more details.
+
+
+GERRIT_LINK: https://gerrit.ericsson.se/#/c/11931696
+
+
+##################################################################################
+
+
+TEST: test_11_n_fail_unlock_lock_tasks
+
+
+DESCRIPTION: Verify unlock/lock behavior when plan fails
+             on these tasks.
+             (the test is a combination of merged test cases)
+
+TMS_ID: litpcds_5890_tc11
+
+
+REASON_OBSOLETED: The test is a combination of obsoleted tests.
+                  It leaves the ms in a state that is leading
+                  to other tests failing.
+
+
+GERRIT_LINK: https://gerrit.ericsson.se/#/c/11931696
+
+
+##################################################################################
+###################################################################################

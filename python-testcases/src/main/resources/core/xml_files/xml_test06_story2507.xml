@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<litp:node xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:litp="http://www.ericsson.com/litp" xsi:schemaLocation="http://www.ericsson.com/litp litp-xml-schema/litp.xsd" id="story2507_node1">
+  <hostname>node2507</hostname>
+  <litp:node-configs-collection id="configs" />
+  <litp:node-file_systems-collection id="file_systems" />
+  <litp:node-items-collection id="items">
+    <litp:ntp-service-inherit source_path="/software/items/ntp1" id="ntp1">
+    </litp:ntp-service-inherit>
+  </litp:node-items-collection>
+  <litp:node-network_interfaces-collection id="network_interfaces">
+    <litp:eth id="if0">
+      <ipaddress>10.10.10.20</ipaddress>
+      <network_name>nodes</network_name>
+      <device_name>eth0</device_name>
+      <macaddress>99:BB:EE:69:DD:D0</macaddress>
+    </litp:eth>
+    <litp:eth id="if1">
+      <device_name>eth1</device_name>
+      <macaddress>98:BB:EE:69:DD:D1</macaddress>
+    </litp:eth>
+  </litp:node-network_interfaces-collection>
+  <litp:os-profile-inherit source_path="/software/profiles/os_prof1" id="os">
+     <name>os-profile1</name>
+  </litp:os-profile-inherit>
+  <litp:node-routes-collection id="routes">
+    <litp:route-inherit source_path="/infrastructure/networking/routes/r1" id="r1">
+    </litp:route-inherit>
+  </litp:node-routes-collection>
+  <litp:storage-profile-inherit source_path="/infrastructure/storage/storage_profiles/profile_1" id="storage_profile">
+  </litp:storage-profile-inherit>
+  <litp:blade-inherit source_path="/infrastructure/systems/sys1" id="system">
+      <system_name>VM1</system_name>
+  </litp:blade-inherit>
+</litp:node>
+
